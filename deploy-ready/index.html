@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>泰兴市滨江机械科技有限公司 | Taixing Binjiang Machinery Technology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #1a1a2e; background: #fff; line-height: 1.6; overflow-x: hidden;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', 'Geist', 'Helvetica Neue', 'PingFang SC', sans-serif;
+}
+.mono { font-family: 'IBM Plex Mono', 'Courier New', monospace; }
+
+/* ===== Design Tokens ===== */
+:root {
+  --primary: #0D1B2A;
+  --accent: #1B4965;
+  --highlight: #415A77;
+  --light: #E0E1DD;
+  --white: #FFFFFF;
+  --gold: #C9A227;
+  --gold-light: rgba(201,162,39,0.12);
+  --gold-medium: rgba(201,162,39,0.3);
+  --dark-surface: #111827;
+  --grid-gap: 24px;
+  --section-py: 120px;
+  --max-w: 1280px;
+  --nav-height: 80px;
+  --topbar-height: 44px;
+  --transition-fast: 0.2s;
+  --transition-base: 0.4s;
+  --transition-slow: 0.6s;
+}
+
+/* ===== Loading Screen ===== */
+.loader-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.loader-overlay.hidden { opacity: 0; visibility: hidden; }
+.loader-brand {
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+}
+.loader-logo {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(201,162,39,0.5)) brightness(1.15) contrast(1.05);
+  transition: all 0.3s ease;
+}
+.loader-bar-container {
+  width: 200px; height: 2px; background: rgba(255,255,255,0.1);
+  position: relative; overflow: hidden;
+}
+.loader-bar {
+  position: absolute; left: 0; top: 0; height: 100%;
+  background: var(--gold);
+  animation: loaderProgress 1.8s ease-in-out forwards;
+}
+@keyframes loaderProgress {
+  0% { width: 0%; }
+  50% { width: 70%; }
+  100% { width: 100%; }
+}
+.loader-text {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  color: var(--highlight); letter-spacing: 3px; text-transform: uppercase;
+}
+
+/* ===== Utility ===== */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+.section { padding: var(--section-py) 0; }
+.section-dark { background: var(--primary); color: var(--white); }
+.section-dark-alt { background: var(--dark-surface); color: var(--white); }
+.section-grey { background: #F4F4F0; }
+.en-only, .zh-only { transition: opacity .3s; }
+html[lang="zh-CN"] .en-only { display: none; }
+html[lang="en"]    .zh-only { display: none; }
+
+/* ===== Technical Grid Overlay ===== */
+.grid-overlay {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.03;
+  background-image:
+    linear-gradient(var(--gold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.grid-overlay-dark {
+  opacity: 0.04;
+  background-image:
+    linear-gradient(var(--light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--light) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ===== Wireframe Diagram Decorations ===== */
+.wireframe-corner {
+  position: absolute; width: 80px; height: 80px; z-index: 1; pointer-events: none;
+}
+.wireframe-corner::before,
+.wireframe-corner::after {
+  content: ''; position: absolute; background: var(--gold);
+}
+.wireframe-corner.top-left { top: 40px; left: 40px; }
+.wireframe-corner.top-left::before { top: 0; left: 0; width: 40px; height: 1px; }
+.wireframe-corner.top-left::after { top: 0; left: 0; width: 1px; height: 40px; }
+.wireframe-corner.bottom-right { bottom: 40px; right: 40px; }
+.wireframe-corner.bottom-right::before { bottom: 0; right: 0; width: 40px; height: 1px; }
+.wireframe-corner.bottom-right::after { bottom: 0; right: 0; width: 1px; height: 40px; }
+.wireframe-corner.white::before,
+.wireframe-corner.white::after { background: var(--white); opacity: 0.2; }
+
+/* ===== Thin Line Separator ===== */
+.line-sep {
+  width: 100%; height: 1px; background: rgba(201,162,39,0.2);
+}
+.line-sep-dark { background: rgba(255,255,255,0.08); }
+
+/* ===== Top Bar ===== */
+.topbar {
+  background: var(--primary); color: var(--highlight);
+  font-size: 12px; padding: 0 32px;
+  height: var(--topbar-height);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+}
+.topbar-left {
+  display: flex; align-items: center; gap: 16px;
+}
+.topbar-phone, .topbar-email {
+  display: flex; align-items: center; gap: 6px;
+}
+.lang-switch {
+  display: flex; gap: 0; position: relative;
+}
+.lang-btn {
+  padding: 6px 16px; border: 1px solid var(--highlight);
+  color: var(--highlight); background: transparent;
+  cursor: pointer; font-size: 11px; letter-spacing: 1px;
+  font-family: 'IBM Plex Mono', monospace;
+  transition: all var(--transition-fast);
+  text-transform: uppercase;
+}
+.lang-btn:first-child { border-right: none; }
+.lang-btn:hover { background: var(--accent); color: var(--white); }
+.lang-btn.active {
+  background: var(--gold); color: var(--primary);
+  border-color: var(--gold); font-weight: 600;
+}
+
+/* ===== Navigation ===== */
+.main-nav {
+  position: fixed; top: var(--topbar-height); left: 0; right: 0;
+  z-index: 190; height: var(--nav-height);
+  background: rgba(13,27,42,0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: all var(--transition-base);
+}
+.main-nav.scrolled {
+  background: rgba(13,27,42,0.98);
+  border-bottom: 1px solid var(--gold-medium);
+  height: 64px;
+}
+.nav-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  height: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 32px;
+}
+.logo-group {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.logo-group:hover {
+  background: rgba(255,255,255,0.05);
+}
+.logo-mark {
+  display: none;
+}
+.logo-text {
+  display: none;
+}
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--light); font-size: 14px;
+  font-weight: 500; position: relative; transition: color var(--transition-fast);
+  letter-spacing: 0.5px; padding: 8px 0;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a::after {
+  content:''; position:absolute; left:0; bottom:0;
+  width:0; height:2px; background:var(--gold); transition:width var(--transition-base);
+}
+.nav-links a:hover::after, .nav-links a.active::after { width:100%; }
+.nav-links a.active { color: var(--gold); }
+
+/* Mobile Hamburger */
+.hamburger {
+  display: none; width: 28px; height: 20px;
+  cursor: pointer; position: relative; z-index: 210;
+}
+.hamburger span {
+  display: block; width: 100%; height: 2px;
+  background: var(--white); position: absolute; left: 0;
+  transition: all var(--transition-base);
+}
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 9px; }
+.hamburger span:nth-child(3) { bottom: 0; }
+.hamburger.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { bottom: 9px; transform: rotate(-45deg); }
+
+.mobile-menu {
+  position: fixed; top: 0; right: -100%; width: 300px; height: 100vh;
+  background: var(--primary); z-index: 205;
+  transition: right var(--transition-slow);
+  padding: 100px 40px;
+  border-left: 1px solid var(--gold-medium);
+}
+.mobile-menu.open { right: 0; }
+.mobile-menu-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  z-index: 204; opacity: 0; visibility: hidden;
+  transition: all var(--transition-base);
+}
+.mobile-menu-overlay.open { opacity: 1; visibility: visible; }
+.mobile-menu ul { list-style: none; }
+.mobile-menu li { margin-bottom: 24px; }
+.mobile-menu a {
+  color: var(--light); text-decoration: none; font-size: 18px;
+  font-weight: 500; transition: color var(--transition-fast);
+  letter-spacing: 0.5px;
+}
+.mobile-menu a:hover, .mobile-menu a.active { color: var(--gold); }
+
+/* ===== Hero ===== */
+.hero {
+  min-height: calc(100vh - var(--topbar-height) - var(--nav-height));
+  max-height: none;
+  position: relative;
+  display: flex; align-items: center;
+  overflow: hidden;
+  margin-top: calc(var(--topbar-height) + var(--nav-height));
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-size: cover; background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.3) contrast(1.1);
+}
+/* Mouse-tracking glow */
+.hero-glow {
+  position: absolute; z-index: 2;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,162,39,0.08) 0%, rgba(201,162,39,0) 70%);
+  pointer-events: none;
+  transition: left 0.3s ease-out, top 0.3s ease-out;
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+}
+.hero-gradient {
+  position: absolute; inset: 0; z-index: 3;
+  background: linear-gradient(135deg,
+    rgba(13,27,42,0.92) 0%,
+    rgba(27,73,101,0.85) 50%,
+    rgba(13,27,42,0.95) 100%);
+}
+.hero .grid-overlay-dark { z-index: 4; }
+.hero-content {
+  position: relative; z-index: 5;
+  padding: 60px 0;
+}
+/* Hero stats: ensure always visible */
+.hero-stats {
+  display: flex; gap: 48px; margin-top: 48px;
+  padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08);
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 8px 20px; border: 1px solid var(--gold-medium);
+  margin-bottom: 32px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; color: var(--gold); letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px; background: var(--gold);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.hero-content h1 {
+  font-size: 64px; font-weight: 700; color: var(--white);
+  line-height: 1.1; margin-bottom: 28px; letter-spacing: -1px;
+}
+.hero-content h1 .gold { color: var(--gold); }
+.hero-tagline {
+  font-size: 20px; color: var(--light); font-weight: 300;
+  margin-bottom: 48px; max-width: 640px; line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+.hero-actions {
+  display: flex; gap: 16px; align-items: center;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 16px 40px; background: var(--gold); color: var(--primary);
+  font-weight: 600; font-size: 15px; letter-spacing: 1px;
+  border: none; cursor: pointer; transition: all var(--transition-base);
+  text-decoration: none; text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+.btn-primary:hover {
+  background: #dbb434; transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201,162,39,0.3);
+}
+.btn-primary .arrow {
+  display: inline-block; transition: transform var(--transition-fast);
+}
+.btn-primary:hover .arrow { transform: translateX(4px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 16px 40px; background: transparent; color: var(--light);
+  font-weight: 500; font-size: 15px; letter-spacing: 1px;
+  border: 1px solid var(--highlight); cursor: pointer;
+  transition: all var(--transition-base); text-decoration: none;
+  text-transform: uppercase; font-family: 'Inter', sans-serif;
+}
+.btn-outline:hover {
+  border-color: var(--gold); color: var(--gold);
+  background: rgba(201,162,39,0.05);
+}
+.hero-stats {
+  display: flex; gap: 48px; margin-top: 80px;
+  padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08);
+}
+.hero-stat { position: relative; }
+.hero-stat .num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 42px; font-weight: 600; color: var(--gold);
+  line-height: 1;
+}
+.hero-stat .label {
+  font-size: 13px; color: var(--highlight); margin-top: 8px;
+  letter-spacing: 0.5px; font-weight: 400;
+}
+.hero-stat::after {
+  content: ''; position: absolute; right: -24px; top: 8px;
+  width: 1px; height: 40px; background: rgba(255,255,255,0.1);
+}
+.hero-stat:last-child::after { display: none; }
+
+/* ===== Section Titles ===== */
+.sec-header {
+  margin-bottom: 64px; position: relative;
+}
+.sec-number {
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+  color: var(--gold); letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px; font-weight: 500;
+}
+.sec-title {
+  font-size: 48px; font-weight: 700; margin-bottom: 16px;
+  color: var(--primary); line-height: 1.1; letter-spacing: -0.5px;
+}
+.section-dark .sec-title { color: var(--white); }
+.sec-subtitle {
+  font-size: 18px; color: var(--highlight); font-weight: 300;
+  max-width: 600px; line-height: 1.5;
+}
+.section-dark .sec-subtitle { color: var(--light); }
+.sec-line {
+  width: 60px; height: 3px; background: var(--gold);
+  margin-top: 24px;
+}
+
+/* ===== About ===== */
+.about-hero-banner {
+  position: relative; overflow: hidden;
+  height: 320px;
+}
+.about-hero-banner img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.55) contrast(1.2);
+  transition: transform var(--transition-slow);
+}
+.about-hero-banner:hover img {
+  transform: scale(1.03);
+}
+.about-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(13,27,42,0.7), rgba(27,73,101,0.5));
+}
+.about-hero-content {
+  position: absolute; bottom: 40px; left: 40px; right: 40px;
+  z-index: 2;
+}
+.about-hero-content .mono-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  color: var(--gold); letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.about-hero-content h3 {
+  font-size: 28px; color: var(--white); font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ===== About Metrics Strip ===== */
+.about-metrics {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  margin-top: 0;
+}
+.metric-card {
+  background: var(--primary); padding: 28px 32px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+  transition: background var(--transition-fast);
+}
+.metric-card:last-child { border-right: none; }
+.metric-card:hover { background: var(--dark-surface); }
+.metric-card.accent { background: var(--dark-surface); }
+.metric-card.accent:hover { background: var(--primary); }
+.metric-value {
+  font-family: 'IBM Plex Mono', monospace; font-size: 28px;
+  color: var(--gold); font-weight: 600; line-height: 1;
+  margin-bottom: 8px;
+}
+.metric-label {
+  font-size: 12px; color: var(--highlight); letter-spacing: 0.5px;
+}
+
+/* ===== About Description ===== */
+.about-description {
+  margin-top: 48px; padding: 0;
+}
+.about-description p {
+  font-size: 16px; line-height: 1.8; color: #444;
+  margin-bottom: 20px;
+}
+.about-description p:last-child { margin-bottom: 0; }
+
+/* ===== Products ===== */
+.products-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.product-card {
+  background: var(--white); border: 1px solid #E0E0E0;
+  position: relative; overflow: hidden;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+.product-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(13,27,42,0.15);
+}
+.product-card-img {
+  height: 220px; overflow: hidden; position: relative;
+}
+.product-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform var(--transition-slow);
+  filter: brightness(0.95) contrast(1.05);
+}
+.product-card:hover .product-card-img img {
+  transform: scale(1.1);
+  filter: brightness(1) contrast(1.1);
+}
+.product-card-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(13,27,42,0.1), rgba(13,27,42,0.3));
+  transition: opacity var(--transition-base);
+}
+.product-card:hover .product-card-img-overlay { opacity: 0.5; }
+.product-card-tag {
+  position: absolute; top: 16px; left: 16px;
+  padding: 6px 14px; background: var(--primary);
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase;
+  z-index: 2;
+}
+.product-card-body {
+  padding: 28px 24px;
+}
+.product-card-body h3 {
+  font-size: 20px; font-weight: 600; color: var(--primary);
+  margin-bottom: 12px; letter-spacing: 0.3px;
+}
+.product-card-body p {
+  font-size: 14px; color: #666; line-height: 1.7;
+  margin-bottom: 16px;
+}
+.product-card-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 16px; border-top: 1px solid #E8E8E8;
+}
+.product-card-spec {
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+  color: var(--accent); letter-spacing: 0.5px;
+}
+.product-card-action {
+  font-size: 13px; color: var(--gold); font-weight: 500;
+  display: flex; align-items: center; gap: 6px;
+  transition: gap var(--transition-fast);
+}
+.product-card:hover .product-card-action { gap: 10px; }
+
+/* ===== Product Modal ===== */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(13,27,42,0.85);
+  backdrop-filter: blur(8px);
+  opacity: 0; visibility: hidden;
+  transition: all var(--transition-base);
+}
+.modal-overlay.open { opacity: 1; visibility: visible; }
+.modal {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  z-index: 301; max-width: 800px; width: 90%;
+  max-height: 85vh;
+  background: var(--white);
+  opacity: 0; visibility: hidden;
+  transition: all var(--transition-base);
+  overflow-y: auto;
+  border-radius: 0;
+}
+.modal.open {
+  opacity: 1; visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+.modal-close {
+  position: absolute; top: 20px; right: 20px;
+  width: 40px; height: 40px; background: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 5; transition: background var(--transition-fast);
+  border: none;
+}
+.modal-close:hover { background: var(--accent); }
+.modal-close svg { width: 20px; height: 20px; fill: var(--white); }
+.modal-image {
+  width: 100%; height: 280px; overflow: hidden;
+  position: relative;
+}
+.modal-image img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.modal-image-badge {
+  position: absolute; bottom: 20px; left: 20px;
+  padding: 10px 24px; background: var(--primary);
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+  color: var(--gold); letter-spacing: 2px; text-transform: uppercase;
+}
+.modal-body {
+  padding: 32px;
+}
+.modal-body h2 {
+  font-size: 28px; font-weight: 700; color: var(--primary);
+  margin-bottom: 16px;
+}
+.modal-body p {
+  font-size: 16px; color: #444; line-height: 1.8;
+  margin-bottom: 16px;
+}
+.modal-specs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-top: 24px; padding-top: 24px;
+  border-top: 1px solid #E8E8E8;
+}
+.modal-spec-item {
+  display: flex; justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid #F0F0F0;
+}
+.modal-spec-key {
+  font-family: 'IBM Plex Mono', monospace; font-size: 13px;
+  color: var(--highlight); letter-spacing: 0.5px;
+}
+.modal-spec-val {
+  font-size: 14px; color: var(--primary); font-weight: 500;
+}
+.modal-cta {
+  margin-top: 32px;
+}
+
+/* ===== Precision ===== */
+.precision-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center;
+}
+.precision-visual {
+  position: relative; height: 500px; overflow: hidden;
+}
+.precision-visual img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.7) contrast(1.2);
+}
+.precision-visual-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(13,27,42,0.3), rgba(27,73,101,0.2));
+}
+.precision-scale-viz {
+  position: absolute; bottom: 40px; left: 40px; right: 40px;
+  padding: 24px; background: rgba(13,27,42,0.85);
+  border: 1px solid var(--gold-medium);
+}
+.precision-scale-line {
+  height: 2px; background: var(--gold); position: relative; margin: 20px 0;
+}
+.p-mark {
+  position: absolute; top: -8px; width: 1px; height: 18px;
+  background: var(--gold);
+}
+.p-mark.major { height: 30px; width: 2px; top: -14px; }
+.p-num {
+  position: absolute; top: 28px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; color: var(--gold); font-weight: 500;
+}
+.precision-info h3 {
+  font-size: 28px; color: var(--gold); margin-bottom: 24px;
+  letter-spacing: 0.5px;
+}
+.precision-info p {
+  font-size: 16px; color: var(--light); line-height: 1.8;
+  margin-bottom: 16px;
+}
+.precision-badge {
+  display: flex; align-items: center; gap: 24px;
+  padding: 24px 32px; background: rgba(201,162,39,0.1);
+  border: 1px solid var(--gold); margin-top: 32px;
+}
+.precision-badge .value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 40px; font-weight: 600; color: var(--gold);
+}
+.precision-badge .unit {
+  font-size: 14px; color: var(--light); letter-spacing: 0.5px;
+}
+.precision-features {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-top: 40px;
+}
+.precision-feature {
+  padding: 20px; border: 1px solid rgba(255,255,255,0.08);
+  transition: all var(--transition-fast);
+}
+.precision-feature:hover {
+  border-color: var(--gold-medium);
+  background: rgba(201,162,39,0.04);
+}
+.precision-feature h4 {
+  font-size: 15px; color: var(--gold); margin-bottom: 8px;
+  font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.5px;
+}
+.precision-feature p {
+  font-size: 14px; color: var(--highlight);
+}
+
+/* ===== Services ===== */
+.services-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.service-card {
+  padding: 40px 28px; text-align: left;
+  background: var(--white); border: 1px solid #E0E0E0;
+  position: relative; overflow: hidden;
+  transition: all var(--transition-base);
+}
+.service-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(13,27,42,0.12);
+}
+.service-card .num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 56px; font-weight: 700;
+  color: var(--gold); opacity: 0.15; line-height: 1;
+  margin-bottom: 16px;
+}
+.service-card h3 {
+  font-size: 20px; font-weight: 600; color: var(--primary);
+  margin-bottom: 12px;
+}
+.service-card p {
+  font-size: 14px; color: #666; line-height: 1.7;
+}
+.service-card-line {
+  width: 40px; height: 2px; background: var(--gold);
+  margin-top: 20px;
+}
+
+/* ===== Stats Counter Section ===== */
+.stats-section {
+  background: var(--dark-surface); padding: 80px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 48px; font-weight: 600; color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 14px; color: var(--highlight); margin-top: 12px;
+  letter-spacing: 0.5px;
+}
+.stat-line {
+  width: 40px; height: 1px; background: var(--gold-medium);
+  margin: 16px auto 0;
+}
+
+/* ===== CTA Banner ===== */
+.cta-banner {
+  background: var(--gold); padding: 80px 0;
+  position: relative; overflow: hidden;
+}
+.cta-banner .grid-overlay { opacity: 0.06; background-size: 40px 40px;
+  background-image: linear-gradient(var(--primary) 1px, transparent 1px),
+  linear-gradient(90deg, var(--primary) 1px, transparent 1px);
+}
+.cta-inner {
+  text-align: center; position: relative; z-index: 2;
+}
+.cta-banner h2 {
+  font-size: 36px; color: var(--primary); margin-bottom: 16px;
+  font-weight: 700; letter-spacing: -0.5px;
+}
+.cta-banner p {
+  font-size: 16px; color: rgba(13,27,42,0.6); margin-bottom: 32px;
+  max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.cta-banner .btn {
+  padding: 16px 48px; background: var(--primary); color: var(--gold);
+  font-weight: 600; border: none; cursor: pointer;
+  font-size: 15px; letter-spacing: 1px; transition: all var(--transition-base);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 12px;
+  text-transform: uppercase;
+}
+.cta-banner .btn:hover { background: var(--accent); transform: translateY(-2px); }
+
+/* ===== Contact ===== */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+}
+.contact-image {
+  height: 100%; min-height: 480px; position: relative; overflow: hidden;
+}
+.contact-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.6) contrast(1.1);
+}
+.contact-image-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(13,27,42,0.6), rgba(27,73,101,0.4));
+}
+.contact-image-info {
+  position: absolute; bottom: 40px; left: 40px;
+  padding: 32px; background: rgba(13,27,42,0.85);
+  border: 1px solid var(--gold-medium);
+}
+.contact-image-info .mono {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  color: var(--gold); letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.contact-image-info .addr {
+  font-size: 16px; color: var(--white); line-height: 1.6;
+}
+.contact-info { padding-top: 0; }
+.contact-info h3 {
+  font-size: 28px; color: var(--primary); margin-bottom: 32px;
+  font-weight: 700;
+}
+.contact-item {
+  display: flex; align-items: start; gap: 20px;
+  margin-bottom: 28px; padding-bottom: 28px;
+  border-bottom: 1px solid #E8E8E8;
+}
+.contact-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.contact-item-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.contact-item-row .contact-item {
+  border-bottom: 1px solid #E8E8E8;
+  margin-bottom: 24px; padding-bottom: 24px;
+}
+.contact-item .ci-icon {
+  width: 44px; height: 44px; background: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; border: none;
+}
+.contact-item .ci-icon svg {
+  width: 22px; height: 22px; fill: var(--gold);
+}
+.contact-item .ci-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; color: var(--highlight); margin-bottom: 4px;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.contact-item .ci-value {
+  font-size: 16px; color: var(--primary); font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: var(--primary); color: var(--light);
+  padding: 80px 0 32px; position: relative;
+}
+footer .grid-overlay-dark { position: absolute; inset: 0; }
+.footer-inner { position: relative; z-index: 2; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+  padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.footer-brand .logo-text { display: none; }
+.footer-brand p {
+  font-size: 14px; color: var(--highlight); line-height: 1.7;
+  max-width: 360px;
+}
+.footer-brand .mono-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  color: var(--gold); letter-spacing: 2px; text-transform: uppercase;
+  margin-top: 24px;
+}
+.footer-col h4 {
+  font-size: 14px; color: var(--gold); margin-bottom: 20px;
+  letter-spacing: 1px; font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { padding: 8px 0; font-size: 14px; }
+.footer-col a {
+  color: var(--highlight); text-decoration: none; transition: color var(--transition-fast);
+}
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom {
+  padding-top: 32px;
+  display: flex; justify-content: space-between;
+  font-size: 13px; color: var(--highlight);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* ===== Scroll Animation Classes ===== */
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible {
+  opacity: 1; transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0; transform: translateX(-30px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-left.visible {
+  opacity: 1; transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0; transform: translateX(30px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-right.visible {
+  opacity: 1; transform: translateX(0);
+}
+/* Subtle hover tilt for cards */
+.product-card, .service-card, .metric-card {
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+/* Smooth section scroll-snap feel */
+html {
+  scroll-behavior: smooth;
+}
+section {
+  will-change: transform;
+}
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+
+/* ===== Responsive ===== */
+
+@media (max-width: 1280px) {
+  .container { padding: 0 24px; }
+  .hero-content h1 { font-size: 64px; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .precision-inner { gap: 40px; }
+  .about-hero-banner { height: 280px; }
+  .about-hero-content { bottom: 24px; left: 24px; right: 24px; }
+  .about-hero-content h3 { font-size: 24px; }
+  .metric-value { font-size: 24px; }
+  .contact-image-info { padding: 20px; bottom: 20px; left: 20px; right: 20px; }
+  .modal { max-height: 85vh; }
+  .modal-body { padding: 20px; overflow-y: auto; }
+  .modal-body h2 { font-size: 24px; }
+  .hero-stat .num { font-size: 36px; }
+}
+
+@media (max-width: 768px) {
+  :root { --section-py: 80px; --nav-height: 64px; }
+  .hero-content h1 { font-size: 36px; }
+  .hero-tagline { font-size: 16px; }
+  .hero-stats { flex-direction: column; gap: 24px; }
+  .hero-stat::after { display: none; }
+  .sec-title { font-size: 32px; }
+  .precision-inner, .contact-grid { grid-template-columns: 1fr; }
+  .about-hero-banner { height: 220px; }
+  .about-hero-content { bottom: 16px; left: 16px; right: 16px; }
+  .about-hero-content h3 { font-size: 20px; }
+  .about-metrics { grid-template-columns: repeat(2, 1fr); }
+  .metric-card { padding: 20px 16px; }
+  .metric-value { font-size: 22px; }
+  .metric-label { font-size: 11px; }
+  .about-description { margin-top: 32px; }
+  .about-description p { font-size: 14px; line-height: 1.7; }
+  .precision-visual { height: 300px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .nav-links { display: none; }
+  .hamburger { display: block; }
+  .topbar-left { display: none; }
+  .hero { margin-top: calc(var(--topbar-height) + var(--nav-height)); }
+  /* Modal: scrollable overlay on mobile */
+  .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+  .modal { width: 100%; max-width: 100%; position: fixed; top: 0; left: 0; right: 0; bottom: auto; transform: none; max-height: 100vh; border-radius: 0; overflow-y: auto; }
+  .modal.open { transform: none; }
+  .modal-image { height: 250px; }
+  .modal-body { padding: 20px 16px; }
+  .modal-body h2 { font-size: 20px; }
+  .modal-specs { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; gap: 12px; }
+  .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+  .contact-image { min-height: 300px; }
+  .precision-features { grid-template-columns: 1fr; }
+  .precision-badge { flex-direction: column; gap: 12px; text-align: center; }
+  .stat-num { font-size: 36px; }
+  .cta-banner h2 { font-size: 28px; }
+  .modal-close { top: 10px; right: 10px; width: 36px; height: 36px; }
+  .modal-image-badge { bottom: 10px; left: 10px; padding: 8px 16px; font-size: 10px; }
+  .product-card:hover { transform: translateY(-2px); }
+  .product-card-body { padding: 20px 16px; }
+  .product-card-body h3 { font-size: 16px; }
+  .product-card-body p { font-size: 13px; }
+
+  .service-card .num { font-size: 40px; }
+  .service-card { padding: 30px 20px; }
+  .sec-header { margin-bottom: 40px; }
+  .wireframe-corner { display: none; }
+  .precision-scale-viz { bottom: 20px; left: 20px; right: 20px; padding: 16px; }
+  .p-num { font-size: 10px; top: 20px; }
+}
+
+@media (max-width: 640px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .hero-content h1 { font-size: 32px; }
+  .hero-stat .num { font-size: 28px; }
+  .about-metrics { grid-template-columns: repeat(2, 1fr); }
+  .metric-card { padding: 16px; }
+  .metric-value { font-size: 20px; }
+  .about-hero-banner { height: 200px; }
+  .about-description { margin-top: 24px; }
+  .modal-body { padding: 20px; }
+  .modal-image { height: 200px; }
+  .contact-item { flex-wrap: wrap; }
+  .contact-item-row { grid-template-columns: 1fr; }
+  .ci-icon { width: 36px; height: 36px; }
+  .ci-icon svg { width: 18px; height: 18px; }
+  .ci-value { font-size: 14px; }
+  .product-card:hover { transform: translateY(-2px); }
+  .service-card:hover { transform: translateY(-2px); }
+  .modal-cta .btn-primary { padding: 12px 24px; font-size: 13px; }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 { font-size: 28px; }
+  .products-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .container { padding: 0 16px; }
+  .sec-title { font-size: 26px; }
+  .hero-content { padding: 32px 0; }
+  .hero { min-height: auto; }
+  .hero-glow { display: none; }
+  .hero-badge { font-size: 10px; padding: 6px 12px; }
+  .mobile-menu { width: 100%; padding: 80px 32px; }
+  .mobile-menu.open { right: 0; }
+  .product-card-img { height: 180px; }
+  .modal-body { padding: 16px; }
+  .modal-body h2 { font-size: 18px; }
+  .modal-body p { font-size: 14px; line-height: 1.6; }
+  .modal-spec-key, .modal-spec-val { font-size: 12px; }
+  .contact-image-info .addr { font-size: 14px; }
+  .footer-bottom { flex-wrap: wrap; justify-content: center; }
+  .cta-banner .btn { padding: 12px 32px; width: 100%; justify-content: center; }
+  .hero-stat { text-align: center; }
+  .hero-stat .label { font-size: 11px; }
+  .stats-grid { gap: 24px; }
+  .stat-label { font-size: 12px; }
+  .topbar { padding: 0 16px; }
+  .precision-inner { gap: 24px; }
+  .about-metrics { grid-template-columns: repeat(2, 1fr); }
+  .metric-card { padding: 16px; }
+  .metric-value { font-size: 20px; }
+  .about-metrics { grid-template-columns: repeat(2, 1fr); }
+  .metric-card { padding: 14px 12px; }
+  .metric-value { font-size: 18px; }
+  .metric-label { font-size: 10px; }
+  .about-hero-banner { height: 180px; }
+  .about-description p { font-size: 13px; }
+  .service-card h3 { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Loading Screen ===== -->
+<div class="loader-overlay" id="loader">
+  <div class="loader-brand">
+    <img class="loader-logo" src="images/bjmech-logo.png" alt="泰兴市滨江机械科技有限公司" style="height:100px;width:auto;object-fit:contain;filter:drop-shadow(0 6px 20px rgba(201,162,39,0.5)) brightness(1.15) contrast(1.05);">
+    <div class="loader-bar-container">
+      <div class="loader-bar"></div>
+    </div>
+    <div class="loader-text zh-only">精密刻度 · 匠心制造</div>
+    <div class="loader-text en-only">PRECISION · CRAFTED QUALITY</div>
+  </div>
+</div>
+
+<!-- ===== Top Bar ===== -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-phone">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>138 5288 3090</span>
+    </div>
+    <div class="topbar-email">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+      <span>756011488@qq.com</span>
+    </div>
+  </div>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+    <button class="lang-btn" onclick="switchLang('en')">EN</button>
+  </div>
+</div>
+
+<!-- ===== Navigation ===== -->
+<nav class="main-nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#hero" class="logo-group">
+      <img src="images/bjmech-logo.png" alt="泰兴市滨江机械科技有限公司" style="height:60px;width:auto;object-fit:contain;display:block;filter:drop-shadow(0 2px 10px rgba(201,162,39,0.35));transition:all 0.3s ease;" onmouseover="this.style.filter='drop-shadow(0 4px 14px rgba(201,162,39,0.55)) brightness(1.1) contrast(1.05)'" onmouseout="this.style.filter='drop-shadow(0 2px 10px rgba(201,162,39,0.35))'">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" data-section="about"><span class="zh-only">关于我们</span><span class="en-only">About</span></a></li>
+      <li><a href="#products" data-section="products"><span class="zh-only">产品中心</span><span class="en-only">Products</span></a></li>
+      <li><a href="#precision" data-section="precision"><span class="zh-only">精密技术</span><span class="en-only">Precision</span></a></li>
+      <li><a href="#services" data-section="services"><span class="zh-only">服务方案</span><span class="en-only">Services</span></a></li>
+      <li><a href="#contact" data-section="contact"><span class="zh-only">联系我们</span><span class="en-only">Contact</span></a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Mobile Menu ===== -->
+<div class="mobile-menu-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#about" onclick="toggleMobileMenu()"><span class="zh-only">关于我们</span><span class="en-only">About</span></a></li>
+    <li><a href="#products" onclick="toggleMobileMenu()"><span class="zh-only">产品中心</span><span class="en-only">Products</span></a></li>
+    <li><a href="#precision" onclick="toggleMobileMenu()"><span class="zh-only">精密技术</span><span class="en-only">Precision</span></a></li>
+    <li><a href="#services" onclick="toggleMobileMenu()"><span class="zh-only">服务方案</span><span class="en-only">Services</span></a></li>
+    <li><a href="#contact" onclick="toggleMobileMenu()"><span class="zh-only">联系我们</span><span class="en-only">Contact</span></a></li>
+  </ul>
+  <div style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px">
+      <span class="zh-only">联系方式</span><span class="en-only">Contact</span>
+    </div>
+    <div style="font-size:14px;color:var(--light);line-height:2">
+      <span class="zh-only">电话：138 5288 3090<br>邮箱：756011488@qq.com</span>
+      <span class="en-only">Phone: 138 5288 3090<br>Email: 756011488@qq.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg">
+    <img src="images/hero.png" alt="Industrial Machinery" loading="eager">
+  </div>
+  <div class="hero-glow" id="heroGlow"></div>
+  <div class="hero-gradient"></div>
+  <div class="grid-overlay-dark"></div>
+  <div class="wireframe-corner white top-left"></div>
+  <div class="wireframe-corner white bottom-right"></div>
+  <div class="container hero-content">
+    <div class="hero-badge reveal">
+      <div class="hero-badge-dot"></div>
+      <span class="zh-only">机床刻度盘专业制造商</span>
+      <span class="en-only">PROFESSIONAL GRADUATED DISC MANUFACTURER</span>
+    </div>
+    <h1 class="reveal stagger-1">
+      <span class="zh-only">精密刻度<span class="gold">，匠心制造</span></span>
+      <span class="en-only">Precision Graduation<span class="gold">, Crafted Quality</span></span>
+    </h1>
+    <div class="hero-tagline reveal stagger-2">
+      <span class="zh-only">专注机床刻度盘与标牌制造，刻线精度达 0.2mm，为全国机床企业提供一站式精密配套解决方案</span>
+      <span class="en-only">Specializing in machine tool graduated discs and signage with line accuracy of 0.2mm, delivering one-stop precision solutions for machine tool manufacturers nationwide</span>
+    </div>
+    <div class="hero-actions reveal stagger-3">
+      <a href="#products" class="btn-primary">
+        <span class="zh-only">探索产品</span><span class="en-only">EXPLORE PRODUCTS</span>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a href="#contact" class="btn-outline">
+        <span class="zh-only">联系我们</span><span class="en-only">CONTACT US</span>
+      </a>
+    </div>
+    <div class="hero-stats reveal stagger-4">
+      <div class="hero-stat">
+        <div class="num counter" data-target="13" data-suffix="+">0</div>
+        <div class="label zh-only">年行业深耕</div>
+        <div class="label en-only">Years in Industry</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num mono">0.2mm</div>
+        <div class="label zh-only">刻线精度</div>
+        <div class="label en-only">Line Accuracy</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num mono">A</div>
+        <div class="label zh-only">纳税信用等级</div>
+        <div class="label en-only">Tax Credit Grade</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num counter" data-target="6" data-suffix="+">0</div>
+        <div class="label zh-only">机床品类覆盖</div>
+        <div class="label en-only">Machine Types Covered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="section section-grey" id="about">
+  <div class="grid-overlay"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="sec-header reveal">
+      <div class="sec-number mono zh-only">01 — 关于我们</div>
+      <div class="sec-number mono en-only">01 — ABOUT US</div>
+      <div class="sec-title">
+        <span class="zh-only">关于滨江科技</span>
+        <span class="en-only">About BJMECH</span>
+      </div>
+      <div class="sec-subtitle">
+        <span class="zh-only">深耕精密刻度制造十余年，铸就行业信赖</span>
+        <span class="en-only">Over a decade of precision manufacturing, building industry trust</span>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+    <!-- Full-width image banner -->
+    <div class="about-hero-banner reveal-left">
+      <img src="images/factory.png" alt="Factory Workshop" loading="lazy">
+      <div class="about-hero-overlay"></div>
+      <div class="about-hero-content">
+        <div class="mono-label">EST. 2013</div>
+        <h3><span class="zh-only">精密制造车间 · 泰兴滨江</span><span class="en-only">Precision Workshop · Taixing</span></h3>
+      </div>
+    </div>
+    <!-- Key metrics strip -->
+    <div class="about-metrics reveal stagger-1">
+      <div class="metric-card">
+        <div class="metric-value">2013</div>
+        <div class="metric-label"><span class="zh-only">成立年份</span><span class="en-only">Year Established</span></div>
+      </div>
+      <div class="metric-card accent">
+        <div class="metric-value">50<span class="zh-only">+</span><span class="en-only">+</span></div>
+        <div class="metric-label"><span class="zh-only">合作客户</span><span class="en-only">Partner Clients</span></div>
+      </div>
+      <div class="metric-card accent">
+        <div class="metric-value">100<span class="zh-only">%</span><span class="en-only">%</span></div>
+        <div class="metric-label"><span class="zh-only">质检合格率</span><span class="en-only">QC Pass Rate</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value"><span class="zh-only">全品类</span><span class="en-only">ALL</span></div>
+        <div class="metric-label"><span class="zh-only">一站式配套</span><span class="en-only">One-Stop Solutions</span></div>
+      </div>
+    </div>
+    <!-- Company description -->
+    <div class="about-description reveal stagger-2">
+      <p class="zh-only">泰兴市滨江机械科技有限公司成立于 2013 年，位于江苏省泰兴市滨江镇，是一家专注于机床刻度盘、标牌和刻度尺研发与制造的精密机械企业。公司以精密刻线技术为核心竞争力，产品涵盖车床、磨床、钻床、铣床、镗床、线切割等多种机床配套刻度盘，并提供金属打标和无光镀铬等表面加工服务。</p>
+      <p class="zh-only">公司秉承"精益求精、客户至上"的经营理念，从设计到生产再到调试，为客户提供完整的一站式服务，赢得了众多机床制造企业的长期信赖。纳税信用等级被评为 A 级，彰显了企业的诚信经营与稳健发展。</p>
+      <p class="en-only">Taixing Binjiang Machinery Technology Co., Ltd. was founded in 2013, located in Binjiang Town, Taixing City, Jiangsu Province. The company specializes in the R&D and manufacturing of machine tool graduated discs, signage, and graduated scales. With precision engraving technology as our core competence, our products cover graduated discs for lathes, grinding machines, drilling machines, milling machines, boring machines, wire cutting machines, and more — along with metal marking and matte chrome plating services.</p>
+      <p class="en-only">Guided by the philosophy of "pursuing excellence, customer first," we provide complete one-stop services from design through production to commissioning, earning the long-term trust of numerous machine tool manufacturers. Our A-grade tax credit rating reflects our commitment to honest business practices and steady growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Products ===== -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-number mono zh-only">02 — 产品中心</div>
+      <div class="sec-number mono en-only">02 — PRODUCTS</div>
+      <div class="sec-title">
+        <span class="zh-only">产品中心</span>
+        <span class="en-only">Products</span>
+      </div>
+      <div class="sec-subtitle">
+        <span class="zh-only">全品类机床刻度配套，精密刻线品质保障</span>
+        <span class="en-only">Full-range machine tool graduation solutions, guaranteed precision quality</span>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="products-grid">
+
+      <!-- Product 1: Lathe Disc -->
+      <div class="product-card reveal stagger-1" onclick="openModal(0)">
+        <div class="product-card-img">
+          <img src="images/lathe.png" alt="Lathe Graduated Disc" loading="lazy">
+          <div class="product-card-img-overlay"></div>
+          <div class="product-card-tag mono">PRECISION</div>
+        </div>
+        <div class="product-card-body">
+          <h3><span class="zh-only">车床刻度盘</span><span class="en-only">Lathe Graduated Disc</span></h3>
+          <p class="zh-only">适用于各类车床的精密刻度盘，刻线清晰美观，耐磨耐用，精度达 0.2-0.4mm。</p>
+          <p class="en-only">Precision graduated discs for all types of lathes, with clear and durable engraving lines. Accuracy of 0.2-0.4mm.</p>
+          <div class="product-card-footer">
+            <div class="product-card-spec mono">ACC: 0.2-0.4mm</div>
+            <div class="product-card-action">
+              <span class="zh-only">查看详情</span><span class="en-only">Details</span> &rarr;
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2: Grinding Disc -->
+      <div class="product-card reveal stagger-2" onclick="openModal(1)">
+        <div class="product-card-img">
+          <img src="images/grinding.png" alt="Grinding Machine Disc" loading="lazy">
+          <div class="product-card-img-overlay"></div>
+          <div class="product-card-tag mono">M250</div>
+        </div>
+        <div class="product-card-body">
+          <h3><span class="zh-only">磨床刻度盘</span><span class="en-only">Grinding Machine Disc</span></h3>
+          <p class="zh-only">平面磨床、外圆磨床专用刻度盘，高精度刻线配合磨削加工要求。</p>
+          <p class="en-only">Specialized discs for surface and cylindrical grinding machines. High-precision graduation lines.</p>
+          <div class="product-card-footer">
+            <div class="product-card-spec mono">MODEL: M250+</div>
+            <div class="product-card-action">
+              <span class="zh-only">查看详情</span><span class="en-only">Details</span> &rarr;
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3: Drilling Disc -->
+      <div class="product-card reveal stagger-3" onclick="openModal(2)">
+        <div class="product-card-img">
+          <img src="images/drilling.png" alt="Drilling Machine Disc" loading="lazy">
+          <div class="product-card-img-overlay"></div>
+          <div class="product-card-tag mono">FEED</div>
+        </div>
+        <div class="product-card-body">
+          <h3><span class="zh-only">钻床刻度盘</span><span class="en-only">Drilling Machine Disc</span></h3>
+          <p class="zh-only">钻床进给与主轴刻度盘，适应摇臂钻床与立式钻床，刻度标示精准。</p>
+          <p class="en-only">Feed and spindle graduated discs for radial and vertical drilling machines.</p>
+          <div class="product-card-footer">
+            <div class="product-card-spec mono">TYPE: RADIAL/VERTICAL</div>
+            <div class="product-card-action">
+              <span class="zh-only">查看详情</span><span class="en-only">Details</span> &rarr;
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4: Milling Disc -->
+      <div class="product-card reveal stagger-4" onclick="openModal(3)">
+        <div class="product-card-img">
+          <img src="images/milling.png" alt="Milling Machine Disc" loading="lazy">
+          <div class="product-card-img-overlay"></div>
+          <div class="product-card-tag mono">MULTI-AXIS</div>
+        </div>
+        <div class="product-card-body">
+          <h3><span class="zh-only">铣床刻度盘</span><span class="en-only">Milling Machine Disc</span></h3>
+          <p class="zh-only">铣床纵横向进给刻度盘，刻度分度精确，满足多轴联动定位需求。</p>
+          <p class="en-only">Longitudinal and transverse feed graduated discs for milling machines.</p>
+          <div class="product-card-footer">
+            <div class="product-card-spec mono">AXIS: X/Y/Z</div>
+            <div class="product-card-action">
+              <span class="zh-only">查看详情</span><span class="en-only">Details</span> &rarr;
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5: Boring Disc -->
+      <div class="product-card reveal stagger-5" onclick="openModal(4)">
+        <div class="product-card-img">
+          <img src="images/boring.png" alt="Boring Machine Disc" loading="lazy">
+          <div class="product-card-img-overlay"></div>
+          <div class="product-card-tag mono">COORDINATE</div>
+        </div>
+        <div class="product-card-body">
+          <h3><span class="zh-only">镗床刻度盘</span><span class="en-only">Boring Machine Disc</span></h3>
+          <p class="zh-only">镗床坐标定位刻度盘，精密刻线配合镗削深孔加工，确保坐标移动精度。</p>
+          <p class="en-only">Coordinate positioning discs for boring machines. Precision lines for deep-hole boring.</p>
+          <div class="product-card-footer">
+            <div class="product-card-spec mono">POS: COORDINATE</div>
+            <div class="product-card-action">
+              <span class="zh-only">查看详情</span><span class="en-only">Details</span> &rarr;
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6: Scales & Signs -->
+      <div class="product-card reveal stagger-6" onclick="openModal(5)">
+        <div class="product-card-img">
+          <img src="images/scales.png" alt="Scales and Signage" loading="lazy">
+          <div class="product-card-img-overlay"></div>
+          <div class="product-card-tag mono">CUSTOM</div>
+        </div>
+        <div class="product-card-body">
+          <h3><span class="zh-only">标尺与标牌</span><span class="en-only">Scales & Signage</span></h3>
+          <p class="zh-only">不锈钢标尺、机床标牌及各类刻度尺，涵盖非标定制需求。</p>
+          <p class="en-only">Stainless steel scales, machine signage, and graduated rulers — including custom solutions.</p>
+          <div class="product-card-footer">
+            <div class="product-card-spec mono">FINISH: CHROME/MARK</div>
+            <div class="product-card-action">
+              <span class="zh-only">查看详情</span><span class="en-only">Details</span> &rarr;
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats Counter ===== -->
+<div class="stats-section" id="stats">
+  <div class="grid-overlay-dark"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="stats-grid">
+      <div class="stat-item reveal stagger-1">
+        <div class="stat-num counter" data-target="13" data-suffix="+">0</div>
+        <div class="stat-label zh-only">年行业深耕</div>
+        <div class="stat-label en-only">Years in Industry</div>
+        <div class="stat-line"></div>
+      </div>
+      <div class="stat-item reveal stagger-2">
+        <div class="stat-num counter" data-target="100" data-suffix="+">0</div>
+        <div class="stat-label zh-only">累计交付产品</div>
+        <div class="stat-label en-only">Products Delivered</div>
+        <div class="stat-line"></div>
+      </div>
+      <div class="stat-item reveal stagger-3">
+        <div class="stat-num counter" data-target="0.2" data-suffix="mm" data-decimals="1">0</div>
+        <div class="stat-label zh-only">刻线精度</div>
+        <div class="stat-label en-only">Line Accuracy</div>
+        <div class="stat-line"></div>
+      </div>
+      <div class="stat-item reveal stagger-4">
+        <div class="stat-num zh-only">全系列</div>
+        <div class="stat-num en-only">FULL</div>
+        <div class="stat-label zh-only">机床覆盖</div>
+        <div class="stat-label en-only">Machine Coverage</div>
+        <div class="stat-line"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Precision ===== -->
+<section class="section section-dark" id="precision">
+  <div class="grid-overlay-dark"></div>
+  <div class="wireframe-corner white top-left"></div>
+  <div class="wireframe-corner white bottom-right"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="sec-header reveal">
+      <div class="sec-number mono zh-only">03 — 精密技术</div>
+      <div class="sec-number mono en-only">03 — PRECISION TECH</div>
+      <div class="sec-title">
+        <span class="zh-only">精密刻线技术</span>
+        <span class="en-only">Precision Engraving Technology</span>
+      </div>
+      <div class="sec-subtitle">
+        <span class="zh-only">0.2-0.4mm 刻线精度，每一道刻度都值得信赖</span>
+        <span class="en-only">0.2-0.4mm line accuracy — every graduation earns your trust</span>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="precision-inner">
+      <div class="precision-visual reveal-left">
+        <img src="images/precision.png" alt="Precision Measurement" loading="lazy">
+        <div class="precision-visual-overlay"></div>
+        <div class="precision-scale-viz">
+          <div class="precision-scale-line">
+            <div class="p-mark major" style="left:0"></div>
+            <div class="p-num" style="left:0">0</div>
+            <div class="p-mark" style="left:5%"></div>
+            <div class="p-mark" style="left:10%"></div>
+            <div class="p-mark" style="left:15%"></div>
+            <div class="p-mark" style="left:20%"></div>
+            <div class="p-mark major" style="left:25%"></div>
+            <div class="p-num" style="left:25%">25</div>
+            <div class="p-mark" style="left:30%"></div>
+            <div class="p-mark" style="left:35%"></div>
+            <div class="p-mark" style="left:40%"></div>
+            <div class="p-mark" style="left:45%"></div>
+            <div class="p-mark major" style="left:50%"></div>
+            <div class="p-num" style="left:50%">50</div>
+            <div class="p-mark" style="left:55%"></div>
+            <div class="p-mark" style="left:60%"></div>
+            <div class="p-mark" style="left:65%"></div>
+            <div class="p-mark" style="left:70%"></div>
+            <div class="p-mark major" style="left:75%"></div>
+            <div class="p-num" style="left:75%">75</div>
+            <div class="p-mark" style="left:80%"></div>
+            <div class="p-mark" style="left:85%"></div>
+            <div class="p-mark" style="left:90%"></div>
+            <div class="p-mark" style="left:95%"></div>
+            <div class="p-mark major" style="left:100%"></div>
+            <div class="p-num" style="left:100%">100</div>
+          </div>
+        </div>
+      </div>
+      <div class="precision-info reveal-right">
+        <h3>
+          <span class="zh-only">刻线精度 0.2mm</span>
+          <span class="en-only">Line Accuracy 0.2mm</span>
+        </h3>
+        <p class="zh-only">滨江机械采用先进的精密刻线工艺，刻字刻线精度控制在 0.2-0.4mm 之间，刻度标识清晰美观、耐磨耐用，即使在长期高频使用下也能保持精确读数。</p>
+        <p class="zh-only">我们的技术团队深耕刻度盘制造十余年，积累了丰富的工艺经验和质量控制体系，确保每一件产品都达到行业领先水准。</p>
+        <p class="en-only">BJMECH employs advanced precision engraving technology, controlling line accuracy between 0.2-0.4mm. Graduation markings are clear, aesthetically pleasing, and wear-resistant — maintaining accurate readings even under prolonged high-frequency use.</p>
+        <p class="en-only">Our technical team has accumulated rich craftsmanship experience and quality control systems over more than a decade, ensuring every product meets industry-leading standards.</p>
+        <div class="precision-badge">
+          <div class="value">0.2<span style="font-size:20px">-0.4</span></div>
+          <div>
+            <div class="unit zh-only">毫米刻线精度</div>
+            <div class="unit en-only">mm Line Accuracy</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--highlight);letter-spacing:1px;margin-top:4px">CERTIFIED STANDARD</div>
+          </div>
+        </div>
+        <div class="precision-features">
+          <div class="precision-feature">
+            <h4 class="zh-only">精密刻线</h4>
+            <h4 class="en-only">PRECISION LINES</h4>
+            <p class="zh-only">0.2-0.4mm 刻线精度</p>
+            <p class="en-only">0.2-0.4mm line accuracy</p>
+          </div>
+          <div class="precision-feature">
+            <h4 class="zh-only">耐磨耐用</h4>
+            <h4 class="en-only">DURABILITY</h4>
+            <p class="zh-only">长期高频保持精确</p>
+            <p class="en-only">Accurate under high-frequency use</p>
+          </div>
+          <div class="precision-feature">
+            <h4 class="zh-only">表面处理</h4>
+            <h4 class="en-only">SURFACE FINISH</h4>
+            <p class="zh-only">无光镀铬 / 金属打标</p>
+            <p class="en-only">Matte chrome / Metal marking</p>
+          </div>
+          <div class="precision-feature">
+            <h4 class="zh-only">质量控制</h4>
+            <h4 class="en-only">QC SYSTEM</h4>
+            <p class="zh-only">行业领先检测标准</p>
+            <p class="en-only">Industry-leading inspection</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section class="section section-grey" id="services">
+  <div class="grid-overlay"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="sec-header reveal">
+      <div class="sec-number mono zh-only">04 — 服务方案</div>
+      <div class="sec-number mono en-only">04 — SERVICES</div>
+      <div class="sec-title">
+        <span class="zh-only">一站式服务方案</span>
+        <span class="en-only">One-Stop Service Solution</span>
+      </div>
+      <div class="sec-subtitle">
+        <span class="zh-only">从设计到交付，全程专业保障</span>
+        <span class="en-only">From design to delivery, professional guarantee throughout</span>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal stagger-1">
+        <div class="num mono">01</div>
+        <h3><span class="zh-only">需求设计</span><span class="en-only">Design</span></h3>
+        <p class="zh-only">根据客户机床型号与刻度要求，提供专业设计方案，确保刻度分布与精度满足加工需求</p>
+        <p class="en-only">Professional design solutions based on machine model and graduation requirements, ensuring optimal distribution and accuracy</p>
+        <div class="service-card-line"></div>
+      </div>
+      <div class="service-card reveal stagger-2">
+        <div class="num mono">02</div>
+        <h3><span class="zh-only">精密制造</span><span class="en-only">Manufacturing</span></h3>
+        <p class="zh-only">先进刻线设备与工艺，刻线精度 0.2-0.4mm，金属打标与无光镀铬表面处理，品质稳定可靠</p>
+        <p class="en-only">Advanced engraving equipment, 0.2-0.4mm line accuracy, metal marking and matte chrome plating surface treatment</p>
+        <div class="service-card-line"></div>
+      </div>
+      <div class="service-card reveal stagger-3">
+        <div class="num mono">03</div>
+        <h3><span class="zh-only">安装调试</span><span class="en-only">Commissioning</span></h3>
+        <p class="zh-only">配合客户现场安装与调试，确保刻度盘与机床完美匹配，读数精准无误</p>
+        <p class="en-only">On-site installation and commissioning support, ensuring perfect disc-machine fit and accurate readings</p>
+        <div class="service-card-line"></div>
+      </div>
+      <div class="service-card reveal stagger-4">
+        <div class="num mono">04</div>
+        <h3><span class="zh-only">持续保障</span><span class="en-only">After-Sales</span></h3>
+        <p class="zh-only">完善的售后响应机制，快速处理质量问题与技术需求，保障客户长期稳定生产</p>
+        <p class="en-only">Responsive after-sales mechanism for quality and technical support, ensuring customers' long-term stable production</p>
+        <div class="service-card-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA Banner ===== -->
+<div class="cta-banner">
+  <div class="grid-overlay"></div>
+  <div class="cta-inner">
+    <h2 class="reveal">
+      <span class="zh-only">精密刻度，值得信赖的选择</span>
+      <span class="en-only">Precision Graduation — Your Trusted Choice</span>
+    </h2>
+    <p class="reveal stagger-1">
+      <span class="zh-only">十余年行业深耕 · A 级纳税信用 · 一站式精密配套</span>
+      <span class="en-only">Over a decade of expertise · Grade A tax credit · One-stop precision solutions</span>
+    </p>
+    <a href="#contact" class="btn reveal stagger-2">
+      <span class="zh-only">联系我们</span><span class="en-only">CONTACT US</span> &rarr;
+    </a>
+  </div>
+</div>
+
+<!-- ===== Contact ===== -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-number mono zh-only">05 — 联系我们</div>
+      <div class="sec-number mono en-only">05 — CONTACT</div>
+      <div class="sec-title">
+        <span class="zh-only">联系我们</span>
+        <span class="en-only">Contact Us</span>
+      </div>
+      <div class="sec-subtitle">
+        <span class="zh-only">期待与您合作，共创精密品质</span>
+        <span class="en-only">Looking forward to cooperating with you for precision quality</span>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-image reveal-left" style="position:relative">
+        <img src="images/map.png" alt="Location Map" loading="lazy">
+        <div class="contact-image-overlay"></div>
+        <div class="contact-image-info">
+          <div class="mono zh-only">地理位置</div>
+          <div class="mono en-only">LOCATION</div>
+          <div class="addr zh-only">江苏省泰兴市滨江镇<br>新星村前进组 17 号</div>
+          <div class="addr en-only">Binjiang Town, Taixing City<br>Jiangsu Province, China</div>
+        </div>
+      </div>
+      <div class="contact-info reveal-right">
+        <h3><span class="zh-only">联系方式</span><span class="en-only">Get in Touch</span></h3>
+        <div class="contact-item-row">
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="ci-label zh-only">电话</div>
+              <div class="ci-label en-only">PHONE</div>
+              <div class="ci-value">138 5288 3090</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6" style="fill:none;stroke:white;stroke-width:2"/></svg>
+            </div>
+            <div>
+              <div class="ci-label zh-only">邮箱</div>
+              <div class="ci-label en-only">EMAIL</div>
+              <div class="ci-value">756011488@qq.com</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3" fill="none" stroke="white" stroke-width="2"/></svg>
+          </div>
+          <div>
+            <div class="ci-label zh-only">地址</div>
+            <div class="ci-label en-only">ADDRESS</div>
+            <div class="ci-value zh-only">江苏省泰兴市滨江镇新星村前进组 17 号</div>
+            <div class="ci-value en-only">Binjiang Town, Taixing City, Jiangsu Province, China</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="0" fill="none" stroke="white" stroke-width="2"/><line x1="3" y1="12" x2="21" y2="12" stroke="white" stroke-width="1"/><line x1="12" y1="3" x2="12" y2="21" stroke="white" stroke-width="1"/></svg>
+          </div>
+          <div>
+            <div class="ci-label zh-only">统一社会信用代码</div>
+            <div class="ci-label en-only">USCC</div>
+            <div class="ci-value mono">91321283076345144J</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="grid-overlay-dark"></div>
+  <div class="footer-inner container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/bjmech-logo.png" alt="泰兴市滨江机械科技有限公司" style="height:64px;width:auto;object-fit:contain;display:block;margin-bottom:16px;filter:drop-shadow(0 3px 12px rgba(201,162,39,0.4));transition:all 0.3s ease;" onmouseover="this.style.filter='drop-shadow(0 5px 16px rgba(201,162,39,0.6)) brightness(1.1) contrast(1.05)'" onmouseout="this.style.filter='drop-shadow(0 3px 12px rgba(201,162,39,0.4))'">
+        <p class="zh-only">泰兴市滨江机械科技有限公司 — 专注机床刻度盘、标牌和刻度尺的精密制造，十余年行业深耕，品质值得信赖。</p>
+        <p class="en-only">Taixing Binjiang Machinery Technology Co., Ltd. — Specializing in precision manufacturing of machine tool graduated discs, signage, and scales. Over a decade of expertise, quality you can trust.</p>
+        <div class="mono-label zh-only">精密刻度 · 匠心制造</div>
+        <div class="mono-label en-only">PRECISION · CRAFTED QUALITY</div>
+      </div>
+      <div class="footer-col">
+        <h4 class="zh-only">产品系列</h4>
+        <h4 class="en-only">PRODUCTS</h4>
+        <ul>
+          <li><span class="zh-only">车床刻度盘</span><span class="en-only">Lathe Disc</span></li>
+          <li><span class="zh-only">磨床刻度盘</span><span class="en-only">Grinding Disc</span></li>
+          <li><span class="zh-only">钻床刻度盘</span><span class="en-only">Drilling Disc</span></li>
+          <li><span class="zh-only">铣床刻度盘</span><span class="en-only">Milling Disc</span></li>
+          <li><span class="zh-only">镗床刻度盘</span><span class="en-only">Boring Disc</span></li>
+          <li><span class="zh-only">标尺与标牌</span><span class="en-only">Scales & Signage</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="zh-only">快速导航</h4>
+        <h4 class="en-only">NAVIGATION</h4>
+        <ul>
+          <li><a href="#about"><span class="zh-only">关于我们</span><span class="en-only">About</span></a></li>
+          <li><a href="#products"><span class="zh-only">产品中心</span><span class="en-only">Products</span></a></li>
+          <li><a href="#precision"><span class="zh-only">精密技术</span><span class="en-only">Precision</span></a></li>
+          <li><a href="#services"><span class="zh-only">服务方案</span><span class="en-only">Services</span></a></li>
+          <li><a href="#contact"><span class="zh-only">联系我们</span><span class="en-only">Contact</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="zh-only">联系方式</h4>
+        <h4 class="en-only">CONTACT</h4>
+        <ul>
+          <li>138 5288 3090</li>
+          <li>756011488@qq.com</li>
+          <li class="zh-only">泰兴市滨江镇</li>
+          <li class="en-only">Binjiang Town, Taixing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="zh-only">&copy; 2026 泰兴市滨江机械科技有限公司 版权所有</span>
+      <span class="en-only">&copy; 2026 Taixing Binjiang Machinery Technology Co., Ltd.</span>
+      <span class="mono zh-only">苏ICP备XXXXXXXX号</span>
+      <span class="mono en-only">Jiangsu ICP No. XXXXXXXX</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Product Detail Modal ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<div class="modal" id="productModal">
+  <div class="modal-close" onclick="closeModal()">
+    <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="2"/><line x1="18" y1="6" x2="6" y2="18" stroke="white" stroke-width="2"/></svg>
+  </div>
+  <div class="modal-image" id="modalImage">
+    <img id="modalImg" src="" alt="Product Detail">
+    <div class="modal-image-badge mono" id="modalBadge"></div>
+  </div>
+  <div class="modal-body">
+    <h2 id="modalTitle"></h2>
+    <p id="modalDesc"></p>
+    <p id="modalDescExtra"></p>
+    <div class="modal-specs" id="modalSpecs"></div>
+    <div class="modal-cta">
+      <a href="#contact" class="btn-primary" onclick="closeModal()">
+        <span class="zh-only">咨询此产品</span><span class="en-only">Inquire This Product</span> &rarr;
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== Product Data for Modal =====
+const products = [
+  {
+    img: 'images/lathe.png',
+    badge: 'PRECISION',
+    titleZh: '车床刻度盘',
+    titleEn: 'Lathe Graduated Disc',
+    descZh: '适用于各类车床的精密刻度盘，刻线清晰美观，耐磨耐用，精度达 0.2-0.4mm，确保加工读数准确无误。产品覆盖 C6132、C6140、CA6140 等主流车床型号。',
+    descEn: 'Precision graduated discs for all types of lathes, with clear and durable engraving lines. Accuracy of 0.2-0.4mm ensures precise machining readings. Covering C6132, C6140, CA6140 and other mainstream models.',
+    extraZh: '采用优质材料与先进刻线工艺，每件产品经过严格质检。支持定制刻度分布方案，满足特殊加工需求。',
+    extraEn: 'Made with premium materials and advanced engraving technology, each product undergoes strict quality inspection. Custom graduation distribution solutions available for special machining needs.',
+    specs: [
+      { keyZh: '刻线精度', keyEn: 'Accuracy', valZh: '0.2-0.4mm', valEn: '0.2-0.4mm' },
+      { keyZh: '适用机床', keyEn: 'Machine Type', valZh: '各类车床', valEn: 'All lathe types' },
+      { keyZh: '表面处理', keyEn: 'Surface', valZh: '无光镀铬/打标', valEn: 'Chrome/Marking' },
+      { keyZh: '定制服务', keyEn: 'Custom', valZh: '支持非标定制', valEn: 'Non-standard available' },
+    ]
+  },
+  {
+    img: 'images/grinding.png',
+    badge: 'M250',
+    titleZh: '磨床刻度盘',
+    titleEn: 'Grinding Machine Disc',
+    descZh: '平面磨床、外圆磨床专用刻度盘，高精度刻线配合磨削加工要求，型号覆盖 M250 等主流磨床。刻度清晰耐磨，长期使用保持精确。',
+    descEn: 'Specialized discs for surface and cylindrical grinding machines. High-precision graduation lines meet grinding requirements, covering M250 and other mainstream models.',
+    extraZh: '针对磨床高精度加工特点优化刻线方案，确保磨削进给读数精准。提供多种规格和定制服务。',
+    extraEn: 'Optimized graduation solutions for high-precision grinding characteristics, ensuring accurate feed readings. Multiple specifications and custom services available.',
+    specs: [
+      { keyZh: '刻线精度', keyEn: 'Accuracy', valZh: '0.2-0.4mm', valEn: '0.2-0.4mm' },
+      { keyZh: '适用机床', keyEn: 'Machine Type', valZh: '平面/外圆磨床', valEn: 'Surface/Cylindrical' },
+      { keyZh: '主要型号', keyEn: 'Model', valZh: 'M250 系列', valEn: 'M250 series' },
+      { keyZh: '表面处理', keyEn: 'Surface', valZh: '无光镀铬', valEn: 'Matte chrome' },
+    ]
+  },
+  {
+    img: 'images/drilling.png',
+    badge: 'FEED CONTROL',
+    titleZh: '钻床刻度盘',
+    titleEn: 'Drilling Machine Disc',
+    descZh: '钻床进给与主轴刻度盘，适应摇臂钻床与立式钻床，刻度标示精准，保障孔位加工精度。覆盖 Z35、Z3040 等主流钻床型号。',
+    descEn: 'Feed and spindle graduated discs for radial and vertical drilling machines. Precise graduation markings ensure hole-position machining accuracy. Covering Z35, Z3040 models.',
+    extraZh: '专为钻床进给控制系统设计，刻度分布科学合理，操作直观便捷。支持各类钻床的定制刻度方案。',
+    extraEn: 'Designed specifically for drilling machine feed control systems, with scientifically distributed graduations for intuitive operation. Custom solutions for all drilling machine types.',
+    specs: [
+      { keyZh: '刻线精度', keyEn: 'Accuracy', valZh: '0.2-0.4mm', valEn: '0.2-0.4mm' },
+      { keyZh: '适用机床', keyEn: 'Machine Type', valZh: '摇臂/立式钻床', valEn: 'Radial/Vertical' },
+      { keyZh: '主要型号', keyEn: 'Model', valZh: 'Z35/Z3040', valEn: 'Z35/Z3040' },
+      { keyZh: '功能', keyEn: 'Function', valZh: '进给/主轴控制', valEn: 'Feed/Spindle control' },
+    ]
+  },
+  {
+    img: 'images/milling.png',
+    badge: 'MULTI-AXIS',
+    titleZh: '铣床刻度盘',
+    titleEn: 'Milling Machine Disc',
+    descZh: '铣床纵横向进给刻度盘，刻度分度精确，满足铣削加工多轴联动定位需求，支持各类铣床型号。X62W、X6132 等主流铣床全覆盖。',
+    descEn: 'Longitudinal and transverse feed graduated discs for milling machines. Precise graduation divisions meet multi-axis positioning requirements. Covering X62W, X6132 models.',
+    extraZh: '针对铣床多轴加工特点，提供纵横向进给独立刻度方案，确保各轴定位精度一致。可按需定制刻度分布。',
+    extraEn: 'Independent graduation solutions for longitudinal and transverse feeds, ensuring consistent positioning accuracy across axes. Custom graduation distribution available.',
+    specs: [
+      { keyZh: '刻线精度', keyEn: 'Accuracy', valZh: '0.2-0.4mm', valEn: '0.2-0.4mm' },
+      { keyZh: '适用机床', keyEn: 'Machine Type', valZh: '各类铣床', valEn: 'All milling types' },
+      { keyZh: '控制轴', keyEn: 'Axes', valZh: 'X/Y/Z 轴进给', valEn: 'X/Y/Z feed' },
+      { keyZh: '主要型号', keyEn: 'Model', valZh: 'X62W/X6132', valEn: 'X62W/X6132' },
+    ]
+  },
+  {
+    img: 'images/boring.png',
+    badge: 'COORDINATE',
+    titleZh: '镗床刻度盘',
+    titleEn: 'Boring Machine Disc',
+    descZh: '镗床坐标定位刻度盘，精密刻线配合镗削深孔加工，确保坐标移动精度，适用于卧式及坐标镗床。T68 等主流镗床型号覆盖。',
+    descEn: 'Coordinate positioning discs for boring machines. Precision lines for deep-hole boring operations, ensuring coordinate movement accuracy. Covering T68 models.',
+    extraZh: '镗床加工对坐标定位精度要求极高，我们的刻度盘专为坐标镗床设计，确保微米级定位精度。',
+    extraEn: 'Boring operations demand extreme coordinate positioning accuracy. Our discs are designed for coordinate boring machines, ensuring micron-level positioning precision.',
+    specs: [
+      { keyZh: '刻线精度', keyEn: 'Accuracy', valZh: '0.2-0.4mm', valEn: '0.2-0.4mm' },
+      { keyZh: '适用机床', keyEn: 'Machine Type', valZh: '卧式/坐标镗床', valEn: 'Horizontal/Coordinate' },
+      { keyZh: '定位精度', keyEn: 'Positioning', valZh: '坐标级定位', valEn: 'Coordinate-grade' },
+      { keyZh: '主要型号', keyEn: 'Model', valZh: 'T68 系列', valEn: 'T68 series' },
+    ]
+  },
+  {
+    img: 'images/scales.png',
+    badge: 'CUSTOM',
+    titleZh: '标尺与标牌',
+    titleEn: 'Scales & Signage',
+    descZh: '不锈钢标尺、机床标牌及各类刻度尺，涵盖非标定制需求。金属打标、无光镀铬等表面处理工艺，美观耐用。支持各种规格和形状定制。',
+    descEn: 'Stainless steel scales, machine signage, and graduated rulers — including custom non-standard solutions. Metal marking, matte chrome plating and other surface treatments.',
+    extraZh: '提供完整的产品线：从标准不锈钢标尺到完全定制的异形标牌。表面处理工艺丰富，包括无光镀铬、金属打标、氧化着色等。',
+    extraEn: 'Complete product line: from standard stainless steel scales to fully custom shaped signage. Rich surface treatment options including matte chrome, metal marking, oxide coloring.',
+    specs: [
+      { keyZh: '材质', keyEn: 'Material', valZh: '不锈钢/合金', valEn: 'Stainless/Alloy' },
+      { keyZh: '表面处理', keyEn: 'Surface', valZh: '镀铬/打标/氧化', valEn: 'Chrome/Mark/Oxide' },
+      { keyZh: '定制能力', keyEn: 'Custom', valZh: '全规格非标定制', valEn: 'Full custom capability' },
+      { keyZh: '应用', keyEn: 'Application', valZh: '机床/设备/仪器', valEn: 'Machine/Device/Instrument' },
+    ]
+  }
+];
+
+// ===== Language Switcher =====
+function switchLang(lang) {
+  document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.trim() === (lang === 'zh' ? '中文' : 'EN'));
+  });
+  document.title = lang === 'zh'
+    ? '泰兴市滨江机械科技有限公司 | 泰兴滨江机械'
+    : 'Taixing Binjiang Machinery Technology Co., Ltd. | BJMECH';
+  // Re-render modal if open
+  if (currentModal >= 0) renderModal(currentModal);
+}
+
+// ===== Mobile Menu =====
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('mobileOverlay');
+  const hamburger = document.getElementById('hamburger');
+  const isOpen = menu.classList.contains('open');
+  menu.classList.toggle('open');
+  overlay.classList.toggle('open');
+  hamburger.classList.toggle('open');
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+
+// ===== Sticky Nav Scroll Effect =====
+const mainNav = document.getElementById('mainNav');
+let lastScrollY = 0;
+function handleNavScroll() {
+  const scrollY = window.scrollY;
+  if (scrollY > 100) {
+    mainNav.classList.add('scrolled');
+  } else {
+    mainNav.classList.remove('scrolled');
+  }
+  lastScrollY = scrollY;
+}
+
+// ===== Parallax Effect =====
+function handleParallax() {
+  const heroBg = document.getElementById('heroBg');
+  if (!heroBg) return;
+  const scrollY = window.scrollY;
+  const heroHeight = document.getElementById('hero').offsetHeight;
+  if (scrollY < heroHeight) {
+    heroBg.style.transform = 'translateY(' + (scrollY * 0.4) + 'px)';
+  }
+}
+
+// ===== Scroll Spy =====
+const sections = ['about', 'products', 'precision', 'services', 'contact'];
+function handleScrollSpy() {
+  const scrollY = window.scrollY + 200;
+  let currentSection = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.offsetTop <= scrollY) {
+      currentSection = id;
+    }
+  });
+  // Update desktop nav
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('data-section') === currentSection);
+  });
+  // Update mobile nav
+  document.querySelectorAll('#mobileMenu a').forEach(a => {
+    const href = a.getAttribute('href');
+    const sec = href ? href.replace('#', '') : '';
+    a.classList.toggle('active', sec === currentSection);
+  });
+}
+
+// ===== Scroll Handler (combined) =====
+function onScroll() {
+  handleNavScroll();
+  handleParallax();
+  handleScrollSpy();
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// ===== Intersection Observer for Reveal Animations =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// ===== Counter Animation =====
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.counter').forEach(el => {
+  counterObserver.observe(el);
+});
+
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const decimals = parseInt(el.dataset.decimals) || 0;
+  const duration = 2000;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = target * eased;
+    el.textContent = current.toFixed(decimals) + suffix;
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = target.toFixed(decimals) + suffix;
+    }
+  }
+  requestAnimationFrame(update);
+}
+
+// ===== Product Modal =====
+let currentModal = -1;
+const lang = () => document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
+
+function openModal(index) {
+  currentModal = index;
+  renderModal(index);
+  document.getElementById('modalOverlay').classList.add('open');
+  document.getElementById('productModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  currentModal = -1;
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.getElementById('productModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function renderModal(index) {
+  const p = products[index];
+  const l = lang();
+  document.getElementById('modalImg').src = p.img;
+  document.getElementById('modalBadge').textContent = p.badge;
+  document.getElementById('modalTitle').textContent = l === 'zh' ? p.titleZh : p.titleEn;
+  document.getElementById('modalDesc').textContent = l === 'zh' ? p.descZh : p.descEn;
+  document.getElementById('modalDescExtra').textContent = l === 'zh' ? p.extraZh : p.extraEn;
+
+  const specsContainer = document.getElementById('modalSpecs');
+  specsContainer.innerHTML = '';
+  p.specs.forEach(spec => {
+    const item = document.createElement('div');
+    item.className = 'modal-spec-item';
+    item.innerHTML =
+      '<span class="modal-spec-key">' + (l === 'zh' ? spec.keyZh : spec.keyEn) + '</span>' +
+      '<span class="modal-spec-val">' + (l === 'zh' ? spec.valZh : spec.valEn) + '</span>';
+    specsContainer.appendChild(item);
+  });
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ===== Loading Screen =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+    // Trigger initial reveals for hero content
+    document.querySelectorAll('.hero .reveal, .hero .reveal-left, .hero .reveal-right').forEach(el => {
+      el.classList.add('visible');
+    });
+  }, 2000);
+});
+
+// ===== Mouse-tracking Glow on Hero =====
+const heroGlow = document.getElementById('heroGlow');
+const heroSection = document.getElementById('hero');
+if (heroGlow && heroSection) {
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    heroGlow.style.left = x + 'px';
+    heroGlow.style.top = y + 'px';
+  });
+  heroSection.addEventListener('mouseleave', () => {
+    heroGlow.style.left = '50%';
+    heroGlow.style.top = '50%';
+  });
+}
+
+// ===== Subtle Card Tilt Effect =====
+document.querySelectorAll('.product-card, .service-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const deltaX = (e.clientX - centerX) / rect.width;
+    const deltaY = (e.clientY - centerY) / rect.height;
+    const tiltX = deltaY * -3;  // subtle 3deg max
+    const tiltY = deltaX * 3;
+    card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+// ===== Smooth Section Fade-in Enhancement =====
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('section').forEach(section => {
+  if (section.id !== 'hero') {
+    section.style.opacity = '0.95';
+    section.style.transform = 'translateY(8px)';
+    section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    sectionObserver.observe(section);
+  }
+});
+
+// ===== Initial scroll spy call =====
+handleScrollSpy();
+handleNavScroll();
+</script>
+
+</body>
+</html>
