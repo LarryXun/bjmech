@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netlify 部署指南</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #00C7B7;
+            margin-bottom: 30px;
+        }
+        .step {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #00C7B7;
+        }
+        .step h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #00C7B7;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .btn:hover {
+            background: #00a89d;
+        }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .note {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Netlify 部署指南</h1>
+        
+        <div class="note">
+            <strong>提示：</strong>你的网站文件已经准备好了，只需要按照以下步骤操作即可部署到 Netlify。
+        </div>
+
+        <div class="step">
+            <h2>步骤 1：打开 Netlify Drop</h2>
+            <p>点击下面的按钮打开 Netlify Drop 页面：</p>
+            <a href="https://app.netlify.com/drop" target="_blank" class="btn">打开 Netlify Drop →</a>
+        </div>
+
+        <div class="step">
+            <h2>步骤 2：拖拽文件夹</h2>
+            <p>在 Netlify Drop 页面上，你会看到一个虚线框区域。</p>
+            <p><strong>操作：</strong>将 <code>d:\Qoder</code> 文件夹直接拖拽到这个虚线框中。</p>
+            <p style="color: #666; font-size: 14px;">💡 提示：你可以从文件资源管理器中选中 Qoder 文件夹，然后拖到浏览器窗口中。</p>
+        </div>
+
+        <div class="step">
+            <h2>步骤 3：等待部署完成</h2>
+            <p>Netlify 会自动上传并部署你的网站，通常需要 10-30 秒。</p>
+            <p>部署完成后，你会看到一个新的网址，类似于：<br>
+            <code>https://xxxxx.netlify.app</code></p>
+        </div>
+
+        <div class="step">
+            <h2>步骤 4（可选）：绑定到你的域名</h2>
+            <p>如果你想使用原来的域名 <code>bjmech.netlify.app</code>：</p>
+            <ol>
+                <li>在 Netlify 上注册/登录账号</li>
+                <li>进入 Site settings → Domain management</li>
+                <li>添加自定义域名 <code>bjmech.netlify.app</code></li>
+            </ol>
+        </div>
+
+        <div class="note">
+            <strong>✅ 完成！</strong><br>
+            就这么简单！不需要任何命令行操作，只需要拖拽文件夹即可完成部署。
+        </div>
+    </div>
+</body>
+</html>
