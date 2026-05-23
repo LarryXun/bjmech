@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试图片加载</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #1a1a2e;
+            color: white;
+        }
+        .test-item {
+            margin: 20px 0;
+            padding: 20px;
+            background: #16213e;
+            border-radius: 8px;
+        }
+        img {
+            max-width: 400px;
+            height: auto;
+            border: 2px solid #c9a227;
+            border-radius: 8px;
+        }
+        .status {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+    </style>
+</head>
+<body>
+    <h1>🔍 图片加载测试</h1>
+    
+    <div class="test-item">
+        <h2>测试 1: images/bjmech-logo.png</h2>
+        <img src="images/bjmech-logo.png" alt="Logo" onload="this.nextElementSibling.textContent='✅ 加载成功'; this.nextElementSibling.className='status success'" onerror="this.nextElementSibling.textContent='❌ 加载失败'; this.nextElementSibling.className='status error'">
+        <div class="status">加载中...</div>
+    </div>
+    
+    <div class="test-item">
+        <h2>测试 2: images/bjmech-logo.png?v=2</h2>
+        <img src="images/bjmech-logo.png?v=2" alt="Logo v2" onload="this.nextElementSibling.textContent='✅ 加载成功'; this.nextElementSibling.className='status success'" onerror="this.nextElementSibling.textContent='❌ 加载失败'; this.nextElementSibling.className='status error'">
+        <div class="status">加载中...</div>
+    </div>
+    
+    <div class="test-item">
+        <h2>测试 3: images/hero.png</h2>
+        <img src="images/hero.png" alt="Hero" onload="this.nextElementSibling.textContent='✅ 加载成功'; this.nextElementSibling.className='status success'" onerror="this.nextElementSibling.textContent='❌ 加载失败'; this.nextElementSibling.className='status error'">
+        <div class="status">加载中...</div>
+    </div>
+</body>
+</html>
