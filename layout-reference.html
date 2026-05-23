@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>关于页面布局修复方案参考</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #f5f5f5; padding: 40px; }
+h1 { text-align: center; font-size: 28px; margin-bottom: 40px; color: #333; }
+h2 { font-size: 20px; margin-bottom: 16px; color: #0D1B2A; }
+
+.reference-container {
+  max-width: 960px; margin: 0 auto;
+}
+
+/* 当前问题示意图 */
+.problem-section {
+  margin-bottom: 60px;
+}
+.problem-section h2 { color: #c00; }
+.problem-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+  align-items: start; /* 当前的问题 */
+  border: 2px dashed #c00; padding: 20px; background: #fff;
+}
+.left-col {
+  background: #ddd; min-height: 480px; display: flex; align-items: center; justify-content: center;
+  color: #666; font-size: 14px;
+  position: relative;
+}
+.left-col::after {
+  content: '← 480px 固定高度';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 8px; background: rgba(200,0,0,0.1); color: #c00;
+  text-align: center; font-size: 12px;
+}
+.right-col {
+  background: #0D1B2A; color: #E0E1DD; padding: 24px 32px;
+  position: relative;
+}
+.right-col::after {
+  content: '← 内容决定高度';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 8px; background: rgba(200,0,0,0.1); color: #c00;
+  text-align: center; font-size: 12px;
+}
+.spec-row { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; }
+.misalign-label {
+  position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%);
+  background: #c00; color: white; padding: 4px 12px; font-size: 11px;
+  border-radius: 4px; white-space: nowrap;
+}
+.diff-marker {
+  position: absolute; right: -20px; background: #c00; color: white;
+  font-size: 10px; padding: 2px 6px;
+}
+
+/* 修复后示意图 */
+.solution-section {
+  margin-bottom: 60px;
+}
+.solution-section h2 { color: #0a0; }
+.solution-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+  align-items: stretch; /* 修复方案 */
+  border: 2px solid #0a0; padding: 20px; background: #fff;
+}
+.left-col-fixed {
+  background: #ddd; display: flex; align-items: center; justify-content: center;
+  color: #666; font-size: 14px; overflow: hidden;
+  position: relative;
+}
+.left-col-fixed::after {
+  content: '← 高度自适应（stretch）';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 8px; background: rgba(0,150,0,0.1); color: #0a0;
+  text-align: center; font-size: 12px;
+}
+.right-col-fixed {
+  background: #0D1B2A; color: #E0E1DD; padding: 24px 32px;
+  position: relative;
+}
+.right-col-fixed::after {
+  content: '← 高度自适应（stretch）';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 8px; background: rgba(0,150,0,0.1); color: #0a0;
+  text-align: center; font-size: 12px;
+}
+.align-label {
+  position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%);
+  background: #0a0; color: white; padding: 4px 12px; font-size: 11px;
+  border-radius: 4px; white-space: nowrap;
+}
+
+/* 总结 */
+.summary {
+  background: #fff; border: 1px solid #ddd; padding: 24px; border-radius: 8px;
+  line-height: 2;
+}
+.summary b { color: #0D1B2A; }
+</style>
+</head>
+<body>
+<h1>关于页面布局修复方案</h1>
+
+<div class="reference-container">
+
+  <div class="problem-section">
+    <h2>当前问题：底部不对齐</h2>
+    <div class="problem-grid">
+      <div class="left-col" style="height:480px;">
+        工厂图片区域（固定480px）
+        <span class="diff-marker">480px ↓</span>
+      </div>
+      <div class="right-col" style="min-height:400px;">
+        <p>公司简介文字...</p>
+        <p>企业概览表格</p>
+        <div class="spec-row"><span>成立时间</span><span>2013</span></div>
+        <div class="spec-row"><span>行业深耕</span><span>13年+</span></div>
+        <div class="spec-row"><span>刻线精度</span><span>0.2mm</span></div>
+        <div class="spec-row"><span>纳税信用</span><span>A级</span></div>
+        <div class="spec-row"><span>产品覆盖</span><span>6大类</span></div>
+        <span class="diff-marker">~400px ↓</span>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:8px;color:#c00;font-size:13px;">
+      ❌ 左列480px vs 右列~400px → 底部不对齐（差约80px）
+    </div>
+  </div>
+
+  <div class="solution-section">
+    <h2>修复方案：align-items: stretch + 图片自适应高度</h2>
+    <div class="solution-grid">
+      <div class="left-col-fixed">
+        工厂图片区域<br>（高度跟随右列自动拉伸）<br>图片 object-fit:cover 填满
+      </div>
+      <div class="right-col-fixed">
+        <p>公司简介文字...</p>
+        <p>企业概览表格</p>
+        <div class="spec-row"><span>成立时间</span><span>2013</span></div>
+        <div class="spec-row"><span>行业深耕</span><span>13年+</span></div>
+        <div class="spec-row"><span>刻线精度</span><span>0.2mm</span></div>
+        <div class="spec-row"><span>纳税信用</span><span>A级</span></div>
+        <div class="spec-row"><span>产品覆盖</span><span>6大类</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:8px;color:#0a0;font-size:13px;">
+      ✅ 两列等高 → 底部完美对齐，图片自动填满容器
+    </div>
+  </div>
+
+  <div class="summary">
+    <b>修改内容：</b><br>
+    1. <b>Hero标题字体</b>：恢复1280px断点的h1为64px，不再在平板尺寸缩小标题<br>
+    2. <b>关于页对齐</b>：将 <code>align-items: start</code> → <code>align-items: stretch</code><br>
+    3. <b>图片容器</b>：移除固定 <code>height:480px</code>，改为自适应高度，图片 <code>object-fit:cover</code> 填满<br>
+    4. <b>企业概览</b>：已精简为5项关键数据（成立时间、行业深耕、刻线精度、纳税信用、产品覆盖）
+  </div>
+
+</div>
+</body>
+</html>
