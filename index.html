@@ -118,6 +118,14 @@
 <!-- Tidio Live Chat -->
 <script src="//code.tidio.co/sp9defsh7psmecp2q5mw9msvsunszof7.js" async></script>
 
+<!-- AMap (Gaode Map) API -->
+<script type="text/javascript">
+  window._AMapSecurityConfig = {
+    securityJsCode: '' // 如需安全密钥，在此添加
+  };
+</script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=c4acd1b01cc8d15b0744a546092b7327"></script>
+
 <!-- Security Headers (via meta tags) -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
@@ -2544,13 +2552,17 @@ section {
     </div>
     <div class="contact-grid">
       <div class="contact-image reveal-left" style="position:relative">
-        <img src="images/map.png" alt="Location Map" loading="lazy">
-        <div class="contact-image-overlay"></div>
-        <div class="contact-image-info">
+        <!-- Interactive AMap Container -->
+        <div id="amapContainer" style="width:100%;height:100%;min-height:480px;border-radius:12px;overflow:hidden;"></div>
+        <div class="contact-image-info" style="z-index:10;">
           <div class="mono zh-only">地理位置</div>
           <div class="mono en-only">LOCATION</div>
           <div class="addr zh-only">江苏省泰兴市滨江镇<br>新星村前进组 17 号</div>
           <div class="addr en-only">Binjiang Town, Taixing City<br>Jiangsu Province, China</div>
+          <button onclick="openMapInNewTab()" style="margin-top:16px;padding:10px 20px;background:var(--gold);color:var(--primary);border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px;transition:all 0.2s;" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--gold)'">
+            <span class="zh-only">🗺️ 查看大图</span>
+            <span class="en-only">🗺️ View Map</span>
+          </button>
         </div>
       </div>
       <div class="contact-info reveal-right">
@@ -3602,6 +3614,89 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// ===== AMap (Gaode Map) Initialization =====
+let map = null;
+let marker = null;
+
+function initAMap() {
+  if (typeof AMap === 'undefined') {
+    console.log('AMap not loaded yet, retrying...');
+    setTimeout(initAMap, 500);
+    return;
+  }
+  
+  try {
+    // Company location: Binjiang Town, Taixing City, Jiangsu
+    // Approximate coordinates: 120.0167, 32.1667
+    const companyLocation = [120.0167, 32.1667];
+    
+    // Initialize map
+    map = new AMap.Map('amapContainer', {
+      zoom: 15,
+      center: companyLocation,
+      viewMode: '2D',
+      mapStyle: 'amap://styles/whitesmoke'
+    });
+    
+    // Add marker
+    marker = new AMap.Marker({
+      position: companyLocation,
+      title: '泰兴市滨江机械科技有限公司',
+      animation: 'AMAP_ANIMATION_DROP'
+    });
+    
+    map.add(marker);
+    
+    // Add info window
+    const infoWindow = new AMap.InfoWindow({
+      content: `
+        <div style="padding:12px;min-width:200px;">
+          <h4 style="margin:0 0 8px 0;color:#0d1b2a;font-size:14px;">泰兴市滨江机械科技有限公司</h4>
+          <p style="margin:0;font-size:12px;color:#666;line-height:1.6;">
+            📍 江苏省泰兴市滨江镇<br>
+            新星村前进组17号
+          </p>
+          <p style="margin:8px 0 0 0;font-size:12px;color:#C9A227;">
+            📞 138-5288-3090
+          </p>
+        </div>
+      `,
+      offset: new AMap.Pixel(0, -30)
+    });
+    
+    marker.on('click', () => {
+      infoWindow.open(map, companyLocation);
+    });
+    
+    // Auto open info window
+    setTimeout(() => {
+      infoWindow.open(map, companyLocation);
+    }, 1000);
+    
+    console.log('AMap initialized successfully');
+  } catch (error) {
+    console.error('Failed to initialize AMap:', error);
+    // Fallback: show static map image
+    const container = document.getElementById('amapContainer');
+    if (container) {
+      container.innerHTML = '<img src="images/map.png" alt="Location Map" style="width:100%;height:100%;object-fit:cover;">';
+    }
+  }
+}
+
+// Open map in new tab
+function openMapInNewTab() {
+  const url = 'https://www.amap.com/search?query=江苏省泰兴市滨江镇新星村前进组17号';
+  window.open(url, '_blank');
+}
+
+// Initialize map when page loads
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAMap);
+} else {
+  initAMap();
+}
 </script>
 
 </body>
