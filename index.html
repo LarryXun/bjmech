@@ -213,7 +213,7 @@ h1, h2, h3, h4, h5, h6 {
 .section { padding: var(--section-py) 0; }
 .section-dark { background: var(--primary); color: var(--white); }
 
-/* ===== About Section Background ===== */
+/* ===== About Section Background (Light Grey) ===== */
 #about {
   background: #F8F9FA;
 }
@@ -222,49 +222,67 @@ h1, h2, h3, h4, h5, h6 {
 }
 #about .about-text,
 #about .about-content p {
-  color: rgba(13,27,42,0.8);
+  color: rgba(13,27,42,0.85);
 }
 
-/* ===== Precision Section (Light Grey) ===== */
+/* ===== Precision Section (Dark - High Contrast) ===== */
 #precision {
-  background: #F8F9FA;
+  background: var(--primary);
+  color: var(--white);
 }
 #precision .sec-title,
 #precision h3 {
-  color: var(--primary);
+  color: var(--white);
 }
 #precision .sec-subtitle {
-  color: rgba(13,27,42,0.6);
+  color: var(--light);
 }
 #precision .precision-feature h4 {
-  color: var(--primary);
+  color: var(--gold);
 }
 #precision .precision-feature p {
-  color: rgba(13,27,42,0.7);
+  color: var(--light);
+}
+#precision .precision-highlight {
+  background: rgba(201,162,39,0.1);
+  border-color: var(--gold-medium);
+}
+#precision .precision-number {
+  color: var(--gold);
+}
+#precision .precision-label {
+  color: var(--light);
 }
 
-/* ===== Services Section (White) ===== */
+/* ===== Services Section (Dark - High Contrast) ===== */
 #services {
-  background: var(--white);
+  background: var(--primary);
+  color: var(--white);
 }
 #services .sec-subtitle {
-  color: rgba(13,27,42,0.7);
+  color: var(--light);
 }
 #services .service-text,
 #services .service-description {
-  color: rgba(13,27,42,0.8);
+  color: var(--light);
+}
+#services .service-card {
+  background: var(--dark-surface);
+  border-color: rgba(255,255,255,0.08);
 }
 
-/* ===== Contact Section (Light Grey) ===== */
+/* ===== Contact Section (White - High Contrast) ===== */
 #contact {
-  background: #F8F9FA;
+  background: var(--white);
+}
+#contact .sec-title {
+  color: var(--primary);
 }
 #contact .sec-subtitle {
   color: rgba(13,27,42,0.7);
 }
-#contact .contact-info,
-#contact .contact-content p {
-  color: rgba(13,27,42,0.8);
+#contact .contact-info h3 {
+  color: var(--primary);
 }
 #contact .contact-item .ci-label {
   color: rgba(13,27,42,0.6);
@@ -940,11 +958,11 @@ html[lang="en"]    .zh-only { display: none; }
   margin-top: 20px;
 }
 
-/* ===== Stats Counter Section (Brand Blue) ===== */
+/* ===== Stats Counter Section (Dark - High Contrast) ===== */
 .stats-section {
-  background: var(--accent); padding: 80px 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  background: var(--dark-surface); padding: 80px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .stats-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px;
