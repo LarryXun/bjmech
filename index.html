@@ -199,6 +199,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'IBM Plex Mono', monospace; font-size: 11px;
   color: var(--highlight); letter-spacing: 3px; text-transform: uppercase;
 }
+.loader-company-name {
+  font-size: 18px;
+  color: var(--white);
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-top: -8px;
+  opacity: 0.95;
+}
 
 /* ===== Utility ===== */
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
@@ -370,6 +378,18 @@ html[lang="en"]    .zh-only { display: none; }
 }
 .logo-group:hover {
   background: rgba(255,255,255,0.05);
+}
+.logo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.logo-cn-name {
+  font-size: 13px;
+  color: var(--white);
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1.2;
 }
 .logo-mark {
   display: none;
@@ -1936,6 +1956,7 @@ section {
 <div class="loader-overlay" id="loader">
   <div class="loader-brand">
     <img class="loader-logo" src="images/bjmech-logo.png" alt="泰兴市滨江机械科技有限公司" style="height:100px;width:auto;object-fit:contain;filter:contrast(1.15) saturate(1.08);">
+    <div class="loader-company-name zh-only">泰兴市滨江机械科技有限公司</div>
     <div class="loader-bar-container">
       <div class="loader-bar"></div>
     </div>
@@ -1967,6 +1988,9 @@ section {
   <div class="nav-inner">
     <a href="#hero" class="logo-group">
       <img src="images/bjmech-logo.png" alt="泰兴市滨江机械科技有限公司" style="height:60px;width:auto;object-fit:contain;display:block;filter:contrast(1.12) saturate(1.08);transition:filter 0.2s ease;" onmouseover="this.style.filter='contrast(1.18) saturate(1.1)'" onmouseout="this.style.filter='contrast(1.12) saturate(1.08)'">
+      <div class="logo-content">
+        <div class="logo-cn-name zh-only">泰兴市滨江机械科技有限公司</div>
+      </div>
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about" data-section="about"><span class="zh-only">关于我们</span><span class="en-only">About</span></a></li>
