@@ -908,10 +908,10 @@ html[lang="en"]    .zh-only { display: none; }
 
 /* ===== Contact ===== */
 .contact-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: stretch;
 }
 .contact-image {
-  height: 100%; min-height: 480px; position: relative; overflow: hidden;
+  height: auto; min-height: 320px; max-height: 450px; position: relative; overflow: hidden; border-radius: 12px;
 }
 .contact-image img {
   width: 100%; height: 100%; object-fit: cover;
@@ -934,7 +934,12 @@ html[lang="en"]    .zh-only { display: none; }
 .contact-image-info .addr {
   font-size: 16px; color: var(--white); line-height: 1.6;
 }
-.contact-info { padding-top: 0; }
+.contact-info { 
+  padding-top: 0; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .contact-info h3 {
   font-size: 28px; color: var(--primary); margin-bottom: 32px;
   font-weight: 700;
@@ -2551,16 +2556,16 @@ section {
       <div class="sec-line"></div>
     </div>
     <div class="contact-grid">
-      <div class="contact-image reveal-left" style="position:relative">
+      <div class="contact-image reveal-left">
         <!-- Interactive AMap Container -->
-        <div id="amapContainer" style="width:100%;height:100%;min-height:480px;border-radius:12px;overflow:hidden;"></div>
-        <div class="contact-image-info" style="z-index:10;">
+        <div id="amapContainer" style="width:100%;height:100%;border-radius:12px;"></div>
+        <div class="contact-image-info">
           <div class="mono zh-only">地理位置</div>
           <div class="mono en-only">LOCATION</div>
           <div class="addr zh-only">江苏省泰兴市滨江镇<br>新星村前进组 17 号</div>
           <div class="addr en-only">Binjiang Town, Taixing City<br>Jiangsu Province, China</div>
           <button onclick="openMapInNewTab()" style="margin-top:16px;padding:10px 20px;background:var(--gold);color:var(--primary);border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px;transition:all 0.2s;" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--gold)'">
-            <span class="zh-only">🗺️ 查看大图</span>
+            <span class="zh-only">️ 查看大图</span>
             <span class="en-only">🗺️ View Map</span>
           </button>
         </div>
@@ -3620,24 +3625,30 @@ let map = null;
 let marker = null;
 
 function initAMap() {
+  console.log('🗺️ 初始化高德地图...');
+  
   if (typeof AMap === 'undefined') {
-    console.log('AMap not loaded yet, retrying...');
+    console.warn('️ AMap未加载，等待中...');
     setTimeout(initAMap, 500);
     return;
   }
   
+  console.log('✅ AMap已加载，开始初始化地图');
+  
   try {
     // Company location: Binjiang Town, Taixing City, Jiangsu
-    // Approximate coordinates: 120.0167, 32.1667
     const companyLocation = [120.0167, 32.1667];
     
     // Initialize map
     map = new AMap.Map('amapContainer', {
-      zoom: 15,
+      zoom: 14,
       center: companyLocation,
       viewMode: '2D',
-      mapStyle: 'amap://styles/whitesmoke'
+      mapStyle: 'amap://styles/whitesmoke',
+      resizeEnable: true
     });
+    
+    console.log('✅ 地图容器初始化成功');
     
     // Add marker
     marker = new AMap.Marker({
@@ -3647,6 +3658,7 @@ function initAMap() {
     });
     
     map.add(marker);
+    console.log('✅ 标记添加成功');
     
     // Add info window
     const infoWindow = new AMap.InfoWindow({
@@ -3665,22 +3677,26 @@ function initAMap() {
       offset: new AMap.Pixel(0, -30)
     });
     
-    marker.on('click', () => {
-      infoWindow.open(map, companyLocation);
+    // Click marker to show info window
+    marker.on('click', function() {
+      infoWindow.open(map, marker.getPosition());
     });
     
-    // Auto open info window
-    setTimeout(() => {
-      infoWindow.open(map, companyLocation);
-    }, 1000);
+    console.log('✅ 信息窗口添加成功');
     
-    console.log('AMap initialized successfully');
+    // Auto open info window after 2 seconds
+    setTimeout(() => {
+      infoWindow.open(map, marker.getPosition());
+    }, 2000);
+    
+    console.log('✅ 高德地图初始化完成！');
+    
   } catch (error) {
-    console.error('Failed to initialize AMap:', error);
-    // Fallback: show static map image
+    console.error('❌ 地图初始化失败:', error);
+    // Fallback to static map
     const container = document.getElementById('amapContainer');
     if (container) {
-      container.innerHTML = '<img src="images/map.png" alt="Location Map" style="width:100%;height:100%;object-fit:cover;">';
+      container.innerHTML = '<img src="images/map.png" alt="Location Map" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">';
     }
   }
 }
