@@ -3636,8 +3636,11 @@ function initAMap() {
   console.log('✅ AMap已加载，开始初始化地图');
   
   try {
-    // Company location: Binjiang Town, Taixing City, Jiangsu
-    const companyLocation = [120.0167, 32.1667];
+    // Company location: 泰兴市滨江机械科技有限公司
+    // 精确坐标来自高德地图: https://www.amap.com/place/B0L0UHW71E
+    const companyLocation = [119.970708, 32.077976];
+    
+    console.log('📍 公司坐标:', companyLocation);
     
     // Initialize map
     map = new AMap.Map('amapContainer', {
