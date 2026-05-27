@@ -922,17 +922,18 @@ html[lang="en"]    .zh-only { display: none; }
   background: linear-gradient(135deg, rgba(13,27,42,0.6), rgba(27,73,101,0.4));
 }
 .contact-image-info {
-  position: absolute; bottom: 40px; left: 40px;
-  padding: 32px; background: rgba(13,27,42,0.85);
-  border: 1px solid var(--gold-medium);
+  position: absolute; top: 20px; right: 20px;
+  padding: 20px 24px; background: rgba(13,27,42,0.9);
+  border: 1px solid var(--gold-medium); border-radius: 8px;
+  backdrop-filter: blur(10px);
 }
 .contact-image-info .mono {
-  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
   color: var(--gold); letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .contact-image-info .addr {
-  font-size: 16px; color: var(--white); line-height: 1.6;
+  font-size: 14px; color: var(--white); line-height: 1.5;
 }
 .contact-info { 
   padding-top: 0; 
@@ -2560,11 +2561,9 @@ section {
         <!-- Interactive AMap Container -->
         <div id="amapContainer" style="width:100%;height:100%;border-radius:12px;"></div>
         <div class="contact-image-info">
-          <div class="mono zh-only">地理位置</div>
-          <div class="mono en-only">LOCATION</div>
-          <div class="addr zh-only">江苏省泰兴市滨江镇<br>新星村前进组 17 号</div>
-          <div class="addr en-only">Binjiang Town, Taixing City<br>Jiangsu Province, China</div>
-          <button onclick="openMapInNewTab()" style="margin-top:16px;padding:10px 20px;background:var(--gold);color:var(--primary);border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px;transition:all 0.2s;" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--gold)'">
+          <div class="mono zh-only"> 地理位置</div>
+          <div class="mono en-only" style="display:none;">LOCATION</div>
+          <button onclick="openMapInNewTab()" style="margin-top:8px;padding:8px 16px;background:var(--gold);color:var(--primary);border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:12px;transition:all 0.2s;width:100%;" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--gold)'">
             <span class="zh-only">️ 查看大图</span>
             <span class="en-only">🗺️ View Map</span>
           </button>
@@ -3644,10 +3643,10 @@ function initAMap() {
     
     // Initialize map
     map = new AMap.Map('amapContainer', {
-      zoom: 14,
+      zoom: 15,
       center: companyLocation,
       viewMode: '2D',
-      mapStyle: 'amap://styles/whitesmoke',
+      mapStyle: 'amap://styles/dark',  // 深色主题，匹配网站风格
       resizeEnable: true
     });
     
@@ -3685,12 +3684,7 @@ function initAMap() {
       infoWindow.open(map, marker.getPosition());
     });
     
-    console.log('✅ 信息窗口添加成功');
-    
-    // Auto open info window after 2 seconds
-    setTimeout(() => {
-      infoWindow.open(map, marker.getPosition());
-    }, 2000);
+    console.log('✅ 信息窗口添加成功（点击标记查看）');
     
     console.log('✅ 高德地图初始化完成！');
     
