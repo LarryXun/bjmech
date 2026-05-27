@@ -931,27 +931,28 @@ html[lang="en"]    .zh-only { display: none; }
 }
 .service-card {
   padding: 40px 28px; text-align: left;
-  background: var(--white); border: 1px solid #E0E0E0;
+  background: var(--light); border: 1px solid rgba(255,255,255,0.1);
   position: relative; overflow: hidden;
   transition: all var(--transition-base);
 }
 .service-card:hover {
   border-color: var(--gold);
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(13,27,42,0.12);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.08);
 }
 .service-card .num {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 56px; font-weight: 700;
-  color: var(--gold); opacity: 0.15; line-height: 1;
+  color: var(--gold); opacity: 0.2; line-height: 1;
   margin-bottom: 16px;
 }
 .service-card h3 {
-  font-size: 20px; font-weight: 600; color: var(--primary);
+  font-size: 20px; font-weight: 600; color: var(--white);
   margin-bottom: 12px;
 }
 .service-card p {
-  font-size: 14px; color: #666; line-height: 1.7;
+  font-size: 14px; color: var(--light); line-height: 1.7;
 }
 .service-card-line {
   width: 40px; height: 2px; background: var(--gold);
@@ -2464,8 +2465,8 @@ section {
 </section>
 
 <!-- ===== Services ===== -->
-<section class="section section-grey" id="services">
-  <div class="grid-overlay"></div>
+<section class="section section-dark" id="services">
+  <div class="grid-overlay-dark"></div>
   <div class="container" style="position:relative;z-index:2">
     <div class="sec-header reveal">
       <div class="sec-number mono zh-only">04 — 服务方案</div>
