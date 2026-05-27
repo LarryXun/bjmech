@@ -217,6 +217,13 @@ h1, h2, h3, h4, h5, h6 {
 #about {
   background: #F8F9FA;
 }
+#about .sec-subtitle {
+  color: rgba(13,27,42,0.7);
+}
+#about .about-text,
+#about .about-content p {
+  color: rgba(13,27,42,0.8);
+}
 
 /* ===== Precision Section (Light Grey) ===== */
 #precision {
@@ -240,10 +247,30 @@ h1, h2, h3, h4, h5, h6 {
 #services {
   background: var(--white);
 }
+#services .sec-subtitle {
+  color: rgba(13,27,42,0.7);
+}
+#services .service-text,
+#services .service-description {
+  color: rgba(13,27,42,0.8);
+}
 
 /* ===== Contact Section (Light Grey) ===== */
 #contact {
   background: #F8F9FA;
+}
+#contact .sec-subtitle {
+  color: rgba(13,27,42,0.7);
+}
+#contact .contact-info,
+#contact .contact-content p {
+  color: rgba(13,27,42,0.8);
+}
+#contact .contact-item .ci-label {
+  color: rgba(13,27,42,0.6);
+}
+#contact .contact-item .ci-value {
+  color: var(--primary);
 }
 
 /* ===== Map Marker Animation ===== */
@@ -386,10 +413,11 @@ html[lang="en"]    .zh-only { display: none; }
 }
 .logo-cn-name {
   font-size: 13px;
-  color: var(--primary);
+  color: var(--white);
   font-weight: 700;
   letter-spacing: 1px;
   line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 .logo-mark {
   display: none;
