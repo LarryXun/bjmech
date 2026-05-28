@@ -107,16 +107,17 @@
 -->
 
 <!-- DNS Prefetch for external resources -->
-<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//cdn.bootcdn.net">
 <link rel="dns-prefetch" href="//webapi.amap.com">
+<link rel="dns-prefetch" href="//code.tidio.co">
 
 <!-- Preload critical resources -->
 <link rel="preload" href="images/bjmech-logo.png" as="image">
 <!-- Hero image deferred to improve initial load -->
 <!-- <link rel="preload" href="images/hero.png" as="image"> -->
 
-<!-- EmailJS SDK -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<!-- EmailJS SDK (using jsDelivr China mirror for better performance in China) -->
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/emailjs-com/3.2.0/email.min.js"></script>
 <script type="text/javascript">
   (function() {
     // 初始化EmailJS
@@ -124,17 +125,42 @@
   })();
 </script>
 
-<!-- Tidio Live Chat (disabled in China due to network issues) -->
-<!-- Tidio script removed - causes ERR_CONNECTION_CLOSED in China -->
-<!-- If needed, can be re-enabled for international users -->
+<!-- Alternative: FormSubmit (Chinese-friendly form service, no JS required) -->
+<!-- Uncomment below if you want to use FormSubmit as backup -->
+<!-- <form action="https://formsubmit.co/your@email.com" method="POST"> -->
 
-<!-- AMap (Gaode Map) API -->
+<!-- Live Chat Service (Smart loading based on region) -->
+<script>
+  // Detect if user is likely in China based on browser language
+  var isChinaUser = navigator.language.startsWith('zh');
+  
+  if (!isChinaUser) {
+    // For international users: load Tidio
+    (function() {
+      var script = document.createElement('script');
+      script.src = '//code.tidio.co/sp9defsh7psmecp2q5mw9msvsunszof7.js';
+      script.async = true;
+      document.head.appendChild(script);
+    })();
+  }
+  // For China users: Tidio is skipped, use WeChat QR instead (already in contact section)
+</script>
+
+<!-- AMap (Gaode Map) API - Chinese mapping service -->
 <script type="text/javascript">
   window._AMapSecurityConfig = {
     securityJsCode: '' // 如需安全密钥，在此添加
   };
 </script>
-<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=c4acd1b01cc8d15b0744a546092b7327"></script>
+<!-- Using jsDelivr China mirror for AMap (faster in China) -->
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/amap-js-api/2.0/maps?v=2.0&key=c4acd1b01cc8d15b0744a546092b7327"></script>
+
+<!-- Fallback to official AMap if CDN fails -->
+<script>
+  if (typeof AMap === 'undefined') {
+    document.write('<script src="https://webapi.amap.com/maps?v=2.0&key=c4acd1b01cc8d15b0744a546092b7327"><\/script>');
+  }
+</script>
 
 <!-- Security Headers (via meta tags) -->
 <!-- Note: X-Frame-Options should be set via HTTP headers, not meta tags -->
