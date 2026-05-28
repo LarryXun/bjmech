@@ -124,18 +124,9 @@
   })();
 </script>
 
-<!-- Tidio Live Chat (deferred loading for performance) -->
-<script>
-  // Load Tidio after page load to improve initial performance
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      var script = document.createElement('script');
-      script.src = '//code.tidio.co/sp9defsh7psmecp2q5mw9msvsunszof7.js';
-      script.async = true;
-      document.head.appendChild(script);
-    }, 2000); // Delay 2 seconds
-  });
-</script>
+<!-- Tidio Live Chat (disabled in China due to network issues) -->
+<!-- Tidio script removed - causes ERR_CONNECTION_CLOSED in China -->
+<!-- If needed, can be re-enabled for international users -->
 
 <!-- AMap (Gaode Map) API -->
 <script type="text/javascript">
@@ -146,8 +137,8 @@
 <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=c4acd1b01cc8d15b0744a546092b7327"></script>
 
 <!-- Security Headers (via meta tags) -->
+<!-- Note: X-Frame-Options should be set via HTTP headers, not meta tags -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 <style>
 /* ===== Reset & Base ===== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
