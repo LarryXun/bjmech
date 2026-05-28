@@ -106,18 +106,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 -->
 
-<!-- DNS Prefetch for external resources -->
-<link rel="dns-prefetch" href="//cdn.bootcdn.net">
+<!-- DNS Prefetch for external resources (China-optimized) -->
+<link rel="dns-prefetch" href="//unpkg.com">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 <link rel="dns-prefetch" href="//webapi.amap.com">
-<link rel="dns-prefetch" href="//code.tidio.co">
 
 <!-- Preload critical resources -->
 <link rel="preload" href="images/bjmech-logo.png" as="image">
 <!-- Hero image deferred to improve initial load -->
 <!-- <link rel="preload" href="images/hero.png" as="image"> -->
 
-<!-- EmailJS SDK (using jsDelivr China mirror for better performance in China) -->
-<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/emailjs-com/3.2.0/email.min.js"></script>
+<!-- EmailJS SDK (using unpkg China-optimized CDN) -->
+<script type="text/javascript" src="https://unpkg.com/@emailjs/browser@3/dist/email.min.js"></script>
 <script type="text/javascript">
   (function() {
     // 初始化EmailJS
@@ -129,38 +129,18 @@
 <!-- Uncomment below if you want to use FormSubmit as backup -->
 <!-- <form action="https://formsubmit.co/your@email.com" method="POST"> -->
 
-<!-- Live Chat Service (Smart loading based on region) -->
-<script>
-  // Detect if user is likely in China based on browser language
-  var isChinaUser = navigator.language.startsWith('zh');
-  
-  if (!isChinaUser) {
-    // For international users: load Tidio
-    (function() {
-      var script = document.createElement('script');
-      script.src = '//code.tidio.co/sp9defsh7psmecp2q5mw9msvsunszof7.js';
-      script.async = true;
-      document.head.appendChild(script);
-    })();
-  }
-  // For China users: Tidio is skipped, use WeChat QR instead (already in contact section)
-</script>
+<!-- Live Chat Service (Temporarily disabled for China users) -->
+<!-- Tidio removed due to network issues in China -->
+<!-- WeChat QR code available in contact section instead -->
 
-<!-- AMap (Gaode Map) API - Chinese mapping service -->
+<!-- AMap (Gaode Map) API - Official Chinese mapping service -->
 <script type="text/javascript">
   window._AMapSecurityConfig = {
     securityJsCode: '' // 如需安全密钥，在此添加
   };
 </script>
-<!-- Using jsDelivr China mirror for AMap (faster in China) -->
-<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/amap-js-api/2.0/maps?v=2.0&key=c4acd1b01cc8d15b0744a546092b7327"></script>
-
-<!-- Fallback to official AMap if CDN fails -->
-<script>
-  if (typeof AMap === 'undefined') {
-    document.write('<script src="https://webapi.amap.com/maps?v=2.0&key=c4acd1b01cc8d15b0744a546092b7327"><\/script>');
-  }
-</script>
+<!-- Direct use official AMap API (fast in China) -->
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=c4acd1b01cc8d15b0744a546092b7327"></script>
 
 <!-- Security Headers (via meta tags) -->
 <!-- Note: X-Frame-Options should be set via HTTP headers, not meta tags -->
