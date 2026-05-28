@@ -117,11 +117,34 @@
 <!-- <link rel="preload" href="images/hero.png" as="image"> -->
 
 <!-- EmailJS SDK (using unpkg China-optimized CDN) -->
-<script type="text/javascript" src="https://unpkg.com/@emailjs/browser@3/dist/email.min.js"></script>
 <script type="text/javascript">
+  // Load EmailJS with timeout protection
   (function() {
-    // 初始化EmailJS
-    emailjs.init("reHwk5eDKG8-sp8-p");
+    var script = document.createElement('script');
+    script.src = 'https://unpkg.com/@emailjs/browser@3/dist/email.min.js';
+    script.async = true;
+    
+    // Timeout: if EmailJS doesn't load in 5 seconds, continue anyway
+    var timeout = setTimeout(function() {
+      console.warn('EmailJS加载超时，将继续加载页面');
+    }, 5000);
+    
+    script.onload = function() {
+      clearTimeout(timeout);
+      try {
+        emailjs.init("reHwk5eDKG8-sp8-p");
+        console.log('EmailJS初始化成功');
+      } catch(e) {
+        console.warn('EmailJS初始化失败:', e);
+      }
+    };
+    
+    script.onerror = function() {
+      clearTimeout(timeout);
+      console.warn('EmailJS加载失败，表单提交功能将不可用');
+    };
+    
+    document.head.appendChild(script);
   })();
 </script>
 
@@ -3499,16 +3522,35 @@ function showVR() {
   alert(message);
 }
 
-// ===== Loading Screen =====
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('hidden');
+// ===== Loading Screen (with timeout protection) =====
+var loaderHidden = false;
+
+function hideLoader() {
+  if (loaderHidden) return;
+  loaderHidden = true;
+  
+  var loader = document.getElementById('loader');
+  if (loader) {
+    loader.classList.add('hidden');
     // Trigger initial reveals for hero content
-    document.querySelectorAll('.hero .reveal, .hero .reveal-left, .hero .reveal-right').forEach(el => {
+    document.querySelectorAll('.hero .reveal, .hero .reveal-left, .hero .reveal-right').forEach(function(el) {
       el.classList.add('visible');
     });
-  }, 2000);
+  }
+}
+
+// Hide loader when page loads (with 2 second delay for animation)
+window.addEventListener('load', function() {
+  setTimeout(hideLoader, 2000);
 });
+
+// Fallback: force hide loader after 5 seconds no matter what
+setTimeout(function() {
+  if (!loaderHidden) {
+    console.warn('强制隐藏加载动画（超时保护）');
+    hideLoader();
+  }
+}, 5000);
 
 // ===== Mouse-tracking Glow on Hero =====
 const heroGlow = document.getElementById('heroGlow');
