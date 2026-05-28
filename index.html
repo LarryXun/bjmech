@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Cache-Control" content="public, max-age=31536000">
 
 <!-- SEO Meta Tags -->
 <meta name="description" content="泰兴市滨江机械科技有限公司 - 专注机床刻度盘、标牌和刻度尺的精密制造，刻线精度达0.2mm，13年行业经验，A级纳税信用企业。提供车床、磨床、钻床、铣床、镗床等各类机床刻度盘定制服务。">
@@ -98,13 +98,22 @@
   }
 }
 </script>
+<!-- Fonts (Use system fonts for China users, fallback to Google Fonts) -->
+<!-- Google Fonts commented out for China users - using system fonts instead -->
+<!-- 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+-->
+
+<!-- DNS Prefetch for external resources -->
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//webapi.amap.com">
 
 <!-- Preload critical resources -->
 <link rel="preload" href="images/bjmech-logo.png" as="image">
-<link rel="preload" href="images/hero.png" as="image">
+<!-- Hero image deferred to improve initial load -->
+<!-- <link rel="preload" href="images/hero.png" as="image"> -->
 
 <!-- EmailJS SDK -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -115,8 +124,18 @@
   })();
 </script>
 
-<!-- Tidio Live Chat -->
-<script src="//code.tidio.co/sp9defsh7psmecp2q5mw9msvsunszof7.js" async></script>
+<!-- Tidio Live Chat (deferred loading for performance) -->
+<script>
+  // Load Tidio after page load to improve initial performance
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var script = document.createElement('script');
+      script.src = '//code.tidio.co/sp9defsh7psmecp2q5mw9msvsunszof7.js';
+      script.async = true;
+      document.head.appendChild(script);
+    }, 2000); // Delay 2 seconds
+  });
+</script>
 
 <!-- AMap (Gaode Map) API -->
 <script type="text/javascript">
@@ -134,13 +153,13 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
-  font-family: 'Inter', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', 'Arial', sans-serif;
   color: #1a1a2e; background: #fff; line-height: 1.6; overflow-x: hidden;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', 'Geist', 'Helvetica Neue', 'PingFang SC', sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', 'Arial', sans-serif;
 }
-.mono { font-family: 'IBM Plex Mono', 'Courier New', monospace; }
+.mono { font-family: 'Courier New', 'Consolas', 'Monaco', monospace; }
 
 /* ===== Design Tokens ===== */
 :root {
