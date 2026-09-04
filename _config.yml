@@ -1,0 +1,19 @@
+# Keep development files in Git while publishing only the customer website.
+exclude:
+  - .qoder
+  - node_modules
+  - deploy-ready
+  - deploy-guide.html
+  - layout-reference.html
+  - test-images.html
+  - README.md
+  - package.json
+  - package-lock.json
+  - NwpP2.png
+  - j7dslx.png
+  - Gemfile
+  - Gemfile.lock
+  - vendor/bundle
+  - vendor/cache
+  - vendor/gems
+  - vendor/ruby
