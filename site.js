@@ -180,16 +180,12 @@ function switchLang(language) {
   });
   const actions = document.querySelector(".floating-actions");
   if (actions) actions.setAttribute("aria-label", currentLanguage === "en" ? "Quick contact" : "快捷联系");
-  const actionLabels = currentLanguage === "en"
-    ? ["Enquire", "Call", "Back to top"]
-    : ["询价", "电话", "返回顶部"];
-  document.querySelectorAll(".floating-actions button").forEach((button, index) => {
-    const label = actionLabels[index];
-    if (!label) return;
-    button.title = label;
-    button.setAttribute("aria-label", label);
-    const hiddenLabel = button.querySelector(".sr-only");
-    if (hiddenLabel) hiddenLabel.textContent = label;
+  document.querySelectorAll(".floating-actions [data-label-zh]").forEach((action) => {
+    const label = action.dataset[currentLanguage === "en" ? "labelEn" : "labelZh"];
+    action.setAttribute("aria-label", label);
+    if (action.tagName === "BUTTON") action.title = label;
+    const visibleLabel = action.querySelector(".action-label");
+    if (visibleLabel) visibleLabel.textContent = label;
   });
   if (document.getElementById("productModal").classList.contains("open")) renderProduct(currentProductIndex);
   const heroSelected = document.querySelector('[data-hero-src].active');
@@ -320,6 +316,14 @@ function handlePhoneClick() {
     window.location.href = `tel:${number}`;
     return;
   }
+  copyPhoneNumber();
+}
+
+function openContactModal() { setModalState('contactModal', 'contactOverlay', true); }
+function closeContactModal() { setModalState('contactModal', 'contactOverlay', false); }
+
+function copyPhoneNumber() {
+  const number = '+8613852883090';
   if (!navigator.clipboard?.writeText) { showToast('+86 138 5288 3090'); return; }
   navigator.clipboard.writeText(number).then(
     () => showToast(currentLanguage === "en" ? "Phone number copied." : "联系电话已复制。"),
@@ -645,6 +649,7 @@ document.addEventListener("keydown", (event) => {
   closeInquiryModal();
   closePrivacyModal();
   closeTermsModal();
+  closeContactModal();
 });
 
 document.addEventListener("DOMContentLoaded", () => {

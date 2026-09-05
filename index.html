@@ -15,9 +15,9 @@
   <link rel="icon" type="image/png" href="images/brand-web.png">
   <link rel="apple-touch-icon" href="images/brand-web.png">
   <link rel="preload" href="images/real-products/workshop-graduated-ring.jpg" as="image">
-  <link rel="stylesheet" href="icons.css">
-  <link rel="stylesheet" href="site.css?v=20260905-1">
-  <link rel="stylesheet" href="public-site.css?v=20260905-1">
+  <link rel="stylesheet" href="icons.css?v=20260905-2">
+  <link rel="stylesheet" href="site.css?v=20260905-2">
+  <link rel="stylesheet" href="public-site.css?v=20260905-2">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -90,7 +90,7 @@
     <section class="hero hero-v2" id="hero">
       <div class="hero-media" aria-hidden="true">
         <div class="hero-media-inner" id="heroScene">
-          <img id="heroProductImage" fetchpriority="high" src="images/real-products/workshop-graduated-ring.jpg" alt="" data-alt-zh="滨江机械精密刻度产品" data-alt-en="BJMECH precision graduated products">
+          <img id="heroProductImage" fetchpriority="high" src="images/hero-precision-studio.webp" alt="" data-alt-zh="精密刻度件与金属标尺" data-alt-en="Precision graduated components and metal scales" width="1915" height="821">
         </div>
       </div>
       <div class="shell hero-layout-v2">
@@ -109,7 +109,7 @@
         </div>
         <div class="hero-view-switcher hero-enter hero-enter-4" aria-label="产品展示">
           <span><span class="zh-only">产品细节</span><span class="en-only">Explore details</span></span>
-          <button class="active" type="button" aria-pressed="true" data-hero-src="images/real-products/workshop-graduated-ring.jpg" data-hero-position="center" data-hero-label-zh="圆周刻度" data-hero-label-en="Circular graduations"><b>01</b><span class="zh-only">圆周刻度</span><span class="en-only">Graduations</span></button>
+          <button class="active" type="button" aria-pressed="true" data-hero-src="images/hero-precision-studio.webp" data-hero-position="66% center" data-hero-label-zh="精密刻度件与金属标尺" data-hero-label-en="Precision graduated components and metal scales"><b>01</b><span class="zh-only">精密刻度</span><span class="en-only">Precision</span></button>
           <button type="button" aria-pressed="false" data-hero-src="images/real-products/engraved-control-plates.jpg" data-hero-position="64% center" data-hero-label-zh="操作标识" data-hero-label-en="Control markings"><b>02</b><span class="zh-only">操作标识</span><span class="en-only">Markings</span></button>
           <button type="button" aria-pressed="false" data-hero-src="images/real-products/red-anodized-rings.jpg" data-hero-position="center" data-hero-label-zh="阳极氧化刻度环" data-hero-label-en="Anodized graduated rings"><b>03</b><span class="zh-only">刻度环</span><span class="en-only">Rings</span></button>
         </div>
@@ -179,7 +179,22 @@
 
   <footer class="site-footer"><div class="shell footer-top"><a class="brand footer-brand" href="#hero"><img class="brand-symbol" src="images/brand-web.png" alt="滨江机械图形标识" width="54" height="64"><span class="brand-lockup zh-only"><strong>滨江机械</strong><small>泰兴市滨江机械科技有限公司</small></span><span class="brand-lockup en-only"><strong>BJMECH</strong><small>Taixing Binjiang Machinery Technology Co., Ltd.</small></span></a><div class="footer-nav"><a href="#about"><span class="zh-only">公司介绍</span><span class="en-only">Company</span></a><a href="#products"><span class="zh-only">产品中心</span><span class="en-only">Products</span></a><a href="#services"><span class="zh-only">制造能力</span><span class="en-only">Manufacturing</span></a><a href="#precision"><span class="zh-only">质量管理</span><span class="en-only">Quality</span></a><a href="#applications"><span class="zh-only">应用领域</span><span class="en-only">Applications</span></a><a href="#contact"><span class="zh-only">联系我们</span><span class="en-only">Contact</span></a></div></div><div class="shell footer-bottom"><p>© <span id="currentYear"></span> <span class="zh-only">泰兴市滨江机械科技有限公司</span><span class="en-only">Taixing Binjiang Machinery Technology Co., Ltd.</span></p><div><a href="#privacy" onclick="openPrivacyModal(); return false;"><span class="zh-only">隐私说明</span><span class="en-only">Privacy</span></a><a href="#terms" onclick="openTermsModal(); return false;"><span class="zh-only">使用条款</span><span class="en-only">Terms</span></a></div></div></footer>
 
-  <div class="floating-actions" aria-label="快捷联系"><button type="button" onclick="openInquiryModal()" title="询价"><i class="ph ph-chat-circle-text"></i><span class="sr-only">询价</span></button><button type="button" onclick="handlePhoneClick()" title="电话"><i class="ph ph-phone"></i><span class="sr-only">电话</span></button><button type="button" id="backToTop" onclick="scrollToTop()" title="返回顶部"><i class="ph ph-arrow-up"></i><span class="sr-only">返回顶部</span></button></div>
+  <nav class="floating-actions" aria-label="快捷联系">
+    <button class="quick-action" type="button" onclick="openContactModal()" data-label-zh="联系方式" data-label-en="Contact"><i class="ph ph-address-book"></i><span class="action-label">联系方式</span></button>
+    <button class="quick-action" type="button" onclick="openInquiryModal()" data-label-zh="业务咨询" data-label-en="Enquire"><i class="ph ph-chat-circle-text"></i><span class="action-label">业务咨询</span></button>
+    <a class="quick-action" href="tel:+8613852883090" data-label-zh="拨打电话" data-label-en="Call" title="+86 138 5288 3090"><i class="ph ph-phone"></i><span class="action-label">拨打电话</span></a>
+    <a class="quick-action" href="mailto:756011488@qq.com" data-label-zh="发送邮件" data-label-en="Email" title="756011488@qq.com"><i class="ph ph-envelope-simple"></i><span class="action-label">发送邮件</span></a>
+    <button class="quick-action" type="button" id="backToTop" onclick="scrollToTop()" data-label-zh="返回顶部" data-label-en="Top"><i class="ph ph-arrow-up"></i><span class="action-label">返回顶部</span></button>
+  </nav>
+
+  <div class="modal-backdrop" id="contactOverlay" onclick="closeContactModal()"></div>
+  <section class="modal contact-details-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactDetailsTitle" aria-hidden="true">
+    <button class="modal-close" type="button" onclick="closeContactModal()" aria-label="关闭"><i class="ph ph-x"></i></button>
+    <p class="eyebrow"><span class="zh-only">滨江机械</span><span class="en-only">BJMECH</span></p>
+    <h2 id="contactDetailsTitle"><span class="zh-only">联系方式</span><span class="en-only">Contact details</span></h2>
+    <address><a href="tel:+8613852883090"><i class="ph ph-phone" aria-hidden="true"></i>+86 138 5288 3090</a><a href="mailto:756011488@qq.com"><i class="ph ph-envelope-simple" aria-hidden="true"></i>756011488@qq.com</a><p><span class="zh-only">江苏省泰兴市滨江镇新星村前进组17号</span><span class="en-only">No. 17, Qianjin Group, Xinxing Village, Binjiang Town, Taixing, Jiangsu, China</span></p></address>
+    <div class="contact-details-actions"><a class="button button-primary" href="tel:+8613852883090"><span class="zh-only">拨打电话</span><span class="en-only">Call us</span><i class="ph ph-phone"></i></a><button class="button button-light" type="button" onclick="copyPhoneNumber()"><span class="zh-only">复制号码</span><span class="en-only">Copy number</span></button></div>
+  </section>
 
   <div class="modal-backdrop" id="productOverlay" onclick="closeProductModal()"></div>
   <section class="modal product-modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle" aria-hidden="true"><button class="modal-close" type="button" onclick="closeProductModal()" aria-label="关闭"><i class="ph ph-x"></i></button><div class="product-modal-media"><img id="productModalImage" alt=""><span id="productImageCaption"></span></div><div class="product-modal-content"><p class="eyebrow" id="productModalKicker"></p><h2 id="productModalTitle"></h2><p id="productModalSummary"></p><dl id="productModalSpecs"></dl><button class="button button-primary" type="button" onclick="enquireCurrentProduct()"><span class="zh-only">咨询该产品</span><span class="en-only">Enquire about this product</span><i class="ph ph-arrow-right"></i></button></div></section>
@@ -197,6 +212,6 @@
   <div class="modal-backdrop" id="privacyOverlay" onclick="closePrivacyModal()"></div><section class="modal text-modal" id="privacyModal" role="dialog" aria-modal="true" aria-label="隐私说明 / Privacy notice" aria-hidden="true"><button class="modal-close" type="button" onclick="closePrivacyModal()" aria-label="关闭"><i class="ph ph-x"></i></button><h2><span class="zh-only">隐私说明</span><span class="en-only">Privacy Notice</span></h2><p class="zh-only">我们仅将您在询价表单中主动提供的姓名、电话、邮箱、公司名称、需求场景、数量、交期及需求说明用于业务沟通与询价回复，不会将其用于无关用途。</p><p class="en-only">We use the name, phone number, email, company, project type, quantity, delivery and requirement information you submit only to respond to your business enquiry.</p></section>
   <div class="modal-backdrop" id="termsOverlay" onclick="closeTermsModal()"></div><section class="modal text-modal" id="termsModal" role="dialog" aria-modal="true" aria-label="使用条款 / Terms of use" aria-hidden="true"><button class="modal-close" type="button" onclick="closeTermsModal()" aria-label="关闭"><i class="ph ph-x"></i></button><h2><span class="zh-only">使用条款</span><span class="en-only">Terms of Use</span></h2><p class="zh-only">本网站内容仅用于公司及产品介绍。具体材料、尺寸、工艺、价格、交付与验收要求，以双方确认的正式文件为准。</p><p class="en-only">This website is for company and product information only. Material, dimensions, process, price, delivery and acceptance requirements are subject to formally agreed documents.</p></section>
 
-  <script src="site.js?v=20260905-1"></script>
+  <script src="site.js?v=20260905-2"></script>
 </body>
 </html>
